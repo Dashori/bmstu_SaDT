@@ -1,0 +1,210 @@
+#include "process.h"
+
+void rules(void)
+{
+    printf("Rules for input:\n\
+When you enter the real number, please:\n\
+0.Enter elements of number without space\n\
+1.Enter the sign of mantissa(+ or -)\n\
+2.After the first point enter the mantissa(max 30 numbers and necessarily 1 point)\n\
+3.After the second point enter the symbol of exponenta - 'e'\n\
+4.After the third point enter the sign of order(+ or -)\n\
+5.After the fourth point enter the order(max 5 numbers)\n\
+6.Click enter\n\n\
+When you enter the integer number, please:\n\
+0.Enter elements of number without space\n\
+1.Enter the number(max 30 numbers) with sign of number(+ or -)\n\
+2.Click enter\n\n");
+}
+
+int read_real_number(struct real_number *num)
+{
+    printf("Enter the real numbers according to the rules:");
+    if(fgets(num->real_num, MAX_STR, stdin) == NULL)
+        return ERROR_IN_INPUT;
+    if(trim(num->real_num))
+        return ERROR_IN_INPUT;
+    if(input_mantissa(num))
+        return ERROR_IN_INPUT;
+    if(input_order(num))
+        return ERROR_IN_INPUT;
+    return EXIT_SUCCESS;
+
+}
+int input_mantissa(struct real_number *num)
+{
+    if(is_sign_correct(num->real_num[0]))
+        return ERROR_IN_INPUT;
+
+    num->sign_mantissa[0] = num->real_num[0];
+    num->point_place = 0;
+
+    for(size_t i = 1; num->real_num[i] != 'e'; i++)
+    {
+        if (num->real_num[i] == '.')
+            num->point_place = i;
+        else if (num->real_num[i] != '.' && !isdigit(num->real_num[i]))
+            return ERROR_IN_INPUT;
+        num->mantissa[i-1] = num->real_num[i];
+    }
+    if(!num->point_place)
+        return ERROR_IN_INPUT;
+//    printf("point place=%d",num->point_place);
+    if(strlen(num->mantissa) >= MAX_MANTISSA)
+        return ERROR_IN_INPUT;
+    else
+        num->mantissa[strlen(num->mantissa)] = 0;
+
+
+
+    return EXIT_SUCCESS;
+}
+int input_order(struct real_number *num)
+{
+    if(num->real_num[strlen(num->mantissa) + 1] != 'e')
+        return ERROR_IN_INPUT;
+    if(is_sign_correct(num->real_num[strlen(num->mantissa) + 2]))
+        return ERROR_IN_INPUT;
+    char order_char[MAX_ORDER];
+    size_t j = 0;
+    for(size_t i = strlen(num->mantissa) + 3; i < strlen(num->real_num); i++)
+    {
+        if(!isdigit(num->real_num[i]))
+            return ERROR_IN_INPUT;
+        order_char[j++] = num->real_num[i];
+    }
+    if(strlen(order_char) > 5)
+        return ERROR_IN_INPUT;
+
+    num->order = atoi(order_char);
+    return EXIT_SUCCESS;
+}
+int read_int_number(struct int_number *num)
+{
+    printf("Enter the integer number according the rules:");
+    if(fgets(num->int_num, MAX_INT, stdin) == NULL)
+        return ERROR_IN_INPUT;
+
+    if(trim(num->int_num))
+        return ERROR_IN_INPUT;
+
+    if(is_sign_correct(num->int_num[0]))
+        return ERROR_IN_INPUT;
+
+    num->sign_int[0] = num->int_num[0];
+
+    for(size_t i = 1; i < strlen(num->int_num); i++)
+    {
+        if(!isdigit(num->int_num[i]))
+            return ERROR_IN_INPUT;
+        num->int_num[i-1] = num->int_num[i];
+    }
+    num->int_num[strlen(num->int_num) - 1] = 0;
+
+    return EXIT_SUCCESS;
+}
+int trim(char *str)
+{
+    if(str[strlen(str) - 1] != '\n')
+        return EXIT_FAILURE;
+    str[strlen(str) - 1] = 0;
+    return EXIT_SUCCESS;
+}
+int is_sign_correct(char sign)
+{
+    if (sign != '-' && sign != '+')
+        return EXIT_FAILURE;
+    return EXIT_SUCCESS;
+}
+int delete_point(char *mantissa, char *number, size_t point_place)
+{
+    size_t i  = 0;
+
+    for(i = 0; i < point_place - 1; i++)
+        number[i] = mantissa[i];
+
+    for(i = point_place - 1 ; i < strlen(mantissa) - 1; i++)
+        number[i] = mantissa[i + 1];
+
+    number[strlen(mantissa) - 1 ] = 0;
+
+    return EXIT_SUCCESS;
+}
+int multiplication(char *num1, char *num2, char *result)
+{
+    int temp = 0;
+
+    size_t index= 58;
+    size_t j = 0;
+    size_t i = 0;
+
+    for(i = 0; i < strlen(num2); i++)
+    {
+        temp = 0;
+
+        for(j = 0; j < strlen(num1); j++)
+        {
+//            int a = (num1[strlen(num1) - j - 1] - '0');
+//            int b = (num2[strlen(num2) - i - 1] - '0');
+//            int c = a * b ;
+//            printf("b=%d ", b);
+            int c = (num1[strlen(num1) - j - 1] - '0')*(num2[strlen(num2) - i - 1] - '0');
+            c = c + temp;
+            temp = c / 10;
+            c = c % 10;
+//            printf("c=%d ", c);
+//            printf("0 %d", result[59]);
+            result[index - (i + j)] += c;
+        }
+
+        if(temp)
+            result[index - (i + j) ] += temp;
+    }
+
+
+    for(size_t i = index; i > 0 ; i--)
+    {
+        if(result[i] >= 10)
+        {
+            result[i-1] += result[i] / 10;
+            result[i] %= 10;
+        }
+    }
+
+    printf("\n");
+    j = 0;
+
+    while(result[j] == 0)
+        j++;
+
+//    for (i = j; i <= index; i++)
+//    {
+//        printf("%d",result[i]);
+//    }
+
+    printf("\n");
+    return EXIT_SUCCESS;
+}
+
+int print_multi_number(struct real_number *num1, struct int_number *num2, char *result)
+{
+    size_t index= 59;
+    size_t j = 0;
+    size_t i = 0;
+
+    while(result[j] == 0)
+        j++;
+
+    if (num2->sign_int[0] == num1->sign_mantissa[0])
+        printf("+0.");
+    else
+        printf("-0.");
+
+    for (i = j; i < index; i++)
+    {
+        printf("%d",result[i]);
+    }
+
+
+    return EXIT_SUCCESS;
+}
