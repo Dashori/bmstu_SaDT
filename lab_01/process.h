@@ -9,31 +9,27 @@
 #define MAX_STR 41
 #define MAX_MANTISSA 32
 #define MAX_ORDER 7
-#define MAX_INT 31
-#define E_AND_SIGN 3
-#define SIGN 2
+#define MAX_INT 33
 
-#define  ERROR_IN_INPUT 1
+#define ERROR_IN_INPUT 1
+#define ERROR_OVERFLOW_ORDER 2
 
 struct real_number
 {
     char real_num[MAX_STR];
-    char sign_mantissa[SIGN];
+    char sign_mantissa;
     char mantissa[MAX_MANTISSA];
-    char e_and_sign_order[E_AND_SIGN];
+    char sign_order;
     int order;
     size_t point_place;
 
 };
 struct int_number
 {
-    char sign_int[SIGN];
+    char sign_int;
     char int_num[MAX_INT];
 };
-//char signs[] = "+- ";
 
-//int read_sign(char sign[SIGN]);
-//int read_order(char real_order[MAX_ORDER_REAL]);
 void rules(void);
 int read_real_number(struct real_number *num);
 int input_mantissa(struct real_number *num);
@@ -42,7 +38,10 @@ int read_int_number(struct int_number *num);
 int is_sign_correct(char sign);
 int trim(char *str);
 int delete_point(char *mantissa, char *number, size_t point_place);
-int multiplication(char *num1, char *num2, char *result);
-int print_multi_number(struct real_number *num1, struct int_number *num2, char *result);
+int multiplication(char *num1, char *num2, int *result);
+void round_up(int *result);
+char check_the_sign(char sign_1, char sign_2);
+int check_the_order(struct real_number *num, int *count);
+int print_multi_number(int *result, int count, char sign_1, char sign_2);
 
 #endif

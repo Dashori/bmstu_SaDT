@@ -5,8 +5,9 @@ int main(void)
 
     struct real_number num = { 0 };
     struct int_number num_int = { 0 };
-    char result[59] = { 0 };
+    int result[60] = { 0 };
 
+    int count;
     setbuf(stdout, NULL);
 
     rules();
@@ -27,8 +28,13 @@ Please check the rules and try again.\n");
     delete_point(num.mantissa, number_point, num.point_place);
     if (multiplication(number_point, num_int.int_num, result))
         return EXIT_FAILURE;
-    print_multi_number(&num, &num_int, result);
+    round_up(result);
+    if(check_the_order(&num, &count))
+    {
+        printf("Error. Order is owerflow\n");
+        return ERROR_OVERFLOW_ORDER;
+    }
+    print_multi_number(result, count, num.sign_mantissa, num_int.sign_int);
 
-    printf("OK");
     return EXIT_SUCCESS;
 }
