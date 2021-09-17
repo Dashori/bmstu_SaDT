@@ -33,15 +33,17 @@ struct int_number
 void rules(void);
 int read_real_number(struct real_number *num);
 int input_mantissa(struct real_number *num);
+void normalisation(struct real_number *num);
 int input_order(struct real_number *num);
 int read_int_number(struct int_number *num);
+
 int is_sign_correct(char sign);
 int trim(char *str);
-int delete_point(char *mantissa, char *number, size_t point_place);
+int delete_point(char *mantissa, size_t point_place);
 int multiplication(char *num1, char *num2, int *result);
 void round_up(int *result);
 char check_the_sign(char sign_1, char sign_2);
-int check_the_order(struct real_number *num, int *count);
+int check_the_order(struct real_number *num, int *result, int *count);
 int print_multi_number(int *result, int count, char sign_1, char sign_2);
 
 #endif

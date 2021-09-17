@@ -6,7 +6,8 @@ void rules(void)
 When you enter the real number, please:\n\
 0.Enter elements of number without space\n\
 1.Enter the sign of mantissa(+ or -)\n\
-2.After the first point enter the mantissa(max 30 numbers and necessarily 1 point)\n\
+2.After the first point enter the mantissa(max 30 numbers and necessarily 1 point,\n\
+you must enter the number before point)\n\
 3.After the second point enter the symbol of exponenta - 'e'\n\
 4.After the third point enter the sign of order(+ or -)\n\
 5.After the fourth point enter the order(max 5 numbers)\n\
@@ -31,9 +32,11 @@ int read_real_number(struct real_number *num)
 
     if(input_order(num))
         return ERROR_IN_INPUT;
+
     return EXIT_SUCCESS;
 
 }
+
 int input_mantissa(struct real_number *num)
 {
     if(is_sign_correct(num->real_num[0]))
@@ -53,41 +56,47 @@ int input_mantissa(struct real_number *num)
     if(!num->point_place)
         return ERROR_IN_INPUT;
 
-//    printf("point place=%d",num->point_place);
     if(strlen(num->mantissa) >= MAX_MANTISSA)
         return ERROR_IN_INPUT;
-    else
-        num->mantissa[strlen(num->mantissa)] = 0;
 
     return EXIT_SUCCESS;
 }
+
 int input_order(struct real_number *num)
 {
     if(num->real_num[strlen(num->mantissa) + 1] != 'e')
         return ERROR_IN_INPUT;
+
     if(is_sign_correct(num->real_num[strlen(num->mantissa) + 2]))
         return ERROR_IN_INPUT;
     num->sign_order = num->real_num[strlen(num->mantissa) + 2];
 
     char order_char[MAX_ORDER];
     size_t j = 0;
+
     for(size_t i = strlen(num->mantissa) + 3; i < strlen(num->real_num); i++)
     {
         if(!isdigit(num->real_num[i]))
             return ERROR_IN_INPUT;
         order_char[j++] = num->real_num[i];
     }
+
     if(strlen(order_char) > 5)
         return ERROR_IN_INPUT;
     num->order = atoi(order_char);
+
     if(num->sign_order == '-')
         num->order *= -1;
 
+    num->order = num->order - strlen(num->mantissa) + 1 + num->point_place;
+
     return EXIT_SUCCESS;
 }
+
 int read_int_number(struct int_number *num)
 {
     printf("Enter the integer number according the rules:");
+
     if(fgets(num->int_num, MAX_INT, stdin) == NULL)
         return ERROR_IN_INPUT;
 
@@ -109,6 +118,7 @@ int read_int_number(struct int_number *num)
 
     return EXIT_SUCCESS;
 }
+
 int trim(char *str)
 {
     if(str[strlen(str) - 1] != '\n')
@@ -116,30 +126,26 @@ int trim(char *str)
     str[strlen(str) - 1] = 0;
     return EXIT_SUCCESS;
 }
+
 int is_sign_correct(char sign)
 {
     if (sign != '-' && sign != '+')
         return EXIT_FAILURE;
     return EXIT_SUCCESS;
 }
-int delete_point(char *mantissa, char *number, size_t point_place)
+
+int delete_point(char *mantissa, size_t point_place)
 {
-    size_t i  = 0;
-
-    for(i = 0; i < point_place; i++)
-        number[i] = mantissa[i];
-
-    for(i = point_place; i < strlen(mantissa) - 1; i++)
-        number[i] = mantissa[i + 1];
-
-    number[strlen(mantissa) - 1 ] = 0;
+    for(size_t i = point_place; i < strlen(mantissa) - 1; i++)
+        mantissa[i] = mantissa[i + 1];
+    mantissa[strlen(mantissa) - 1 ]= 0;
 
     return EXIT_SUCCESS;
 }
+
 int multiplication(char *num1, char *num2, int *result)
 {
     int temp = 0;
-
     size_t index= 59;
     size_t j = 0;
     size_t i = 0;
@@ -175,12 +181,16 @@ void round_up(int *result)
 {
     size_t index = 59;
     size_t j = 0;
+
     while(result[j] == 0)
         j++;
+
     if (index - j < 30)
         return;
+
     if (result[j + 30] < 5)
         return;
+
     result[j + 29]++;
 
     for(int i = j + 29; i >= 0 ; i--)
@@ -203,13 +213,12 @@ char check_the_sign(char sign_1, char sign_2)
         return '-';
 }
 
-int check_the_order(struct real_number *num, int *count)
+int check_the_order(struct real_number *num, int *result, int *count)
 {
-    printf("point =%d ", num->point_place);
-    (*count) = num->order + num->point_place;
-    printf("%c ",num->mantissa[num->point_place - 1]);
-    if (num->point_place == 0 || (num ->point_place == 1  &num->mantissa[num->point_place - 1] == 0))
-        *count = num->order;
+    size_t j = 0;
+    while(result[j] == 0)
+        j++;
+    *count =  60 - j + num->order;
     if (abs(*count) > 99999)
         return EXIT_FAILURE;
     return EXIT_SUCCESS;
@@ -221,13 +230,20 @@ int print_multi_number(int *result, int count, char sign_1, char sign_2)
     size_t j = 0;
     size_t i = 0;
 
-    printf("%c0.", check_the_sign(sign_1, sign_2));
     while(result[j] == 0)
         j++;
+
+    if (j == index)
+    {
+        printf("Result: 0.0e0");
+        return EXIT_SUCCESS;
+    }
+
+    printf("Result: %c0.", check_the_sign(sign_1, sign_2));
+
     for (i = j; i < index; i++)
         printf("%d",result[i]);
     printf("e");
     printf("%i", count);
-
     return EXIT_SUCCESS;
 }
