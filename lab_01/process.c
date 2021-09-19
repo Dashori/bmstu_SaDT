@@ -179,6 +179,7 @@ int multiplication(char *num1, char *num2, int *result)
 
 void round_up(int *result)
 {
+
     size_t index = 59;
     size_t j = 0;
 
@@ -187,11 +188,13 @@ void round_up(int *result)
 
     if (index - j < 30)
         return;
+    printf(" %d ", result[j+30]);
 
     if (result[j + 30] < 5)
         return;
 
     result[j + 29]++;
+    printf("ROUND ");
 
     for(int i = j + 29; i >= 0 ; i--)
     {
@@ -226,22 +229,51 @@ int check_the_order(struct real_number *num, int *result, int *count)
 
 int print_multi_number(int *result, int count, char sign_1, char sign_2)
 {
-    size_t index= 60;
+    size_t index = 60;
+    size_t end = 1;
+    size_t end_2 = 60;
     size_t j = 0;
     size_t i = 0;
+//    printf("\n");
+//    for(size_t i = 0; i < 60; i++)
+//        printf("%d", result[i]);
+//    printf("\n");
 
     while(result[j] == 0)
         j++;
+//    printf(" %zu ", j);
+    if (j < 30)
+    {
+        while(result[j + 30 - end] == 0)
+            end++;
+//        printf(" %zu ", end);
+        if (end == 1)
+            end = j + 30;
+        else
+        {
+            size_t temp = j + 30 - end + 1;
+            end = temp;
+        }
+//            end += 30 + j;
+
+    }
+    else
+    {
+        while(result[end_2 - 1] == 0)
+            end_2--;
+        end = end_2;
+    }
+
 
     if (j == index)
     {
-        printf("Result: 0.0e0");
+        printf("\nResult: 0.0e0");
         return EXIT_SUCCESS;
     }
 
-    printf("Result: %c0.", check_the_sign(sign_1, sign_2));
+    printf("\nResult: %c0.", check_the_sign(sign_1, sign_2));
 
-    for (i = j; i < index; i++)
+    for (i = j; i < end; i++)
         printf("%d",result[i]);
     printf("e");
     printf("%i", count);
