@@ -1,4 +1,6 @@
-#include "process.h"
+#include "multiplication.h"
+#include "output.h"
+#include "read_numbers.h"
 
 int main(void)
 {
@@ -6,9 +8,8 @@ int main(void)
     struct real_number num = { 0 };
     struct int_number num_int = { 0 };
     int result[60] = { 0 };
-
-
     int count;
+
     setbuf(stdout, NULL);
 
     rules();
@@ -20,16 +21,18 @@ Please check the rules and try again");
         return ERROR_IN_INPUT;
     }
     delete_point(num.mantissa, num.point_place);
+
     if(read_int_number(&num_int))
     {
         printf("Error in input integer number.\n\
 Please check the rules and try again.\n");
         return ERROR_IN_INPUT;
     }
-    if (multiplication(num.mantissa, num_int.int_num, result))
-        return EXIT_FAILURE;
+
+    multiplication(num.mantissa, num_int.int_num, result);
     round_up(result);
-    if(check_the_order(&num, result, &count))
+
+    if(check_the_order(num.order, result, &count))
     {
         printf("Error. Order is overflow\n");
         return ERROR_OVERFLOW_ORDER;
