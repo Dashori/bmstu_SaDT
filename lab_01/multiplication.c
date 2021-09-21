@@ -10,7 +10,7 @@ void delete_point(char *mantissa, size_t point_place)
 void multiplication(char *num1, char *num2, int *result)
 {
     int temp = 0;
-    size_t index = 59, j = 0, i = 0;
+    size_t index = MAX_MULTI - 1, j = 0, i = 0;
 
     for(i = 0; i < strlen(num2); i++)
     {
@@ -37,18 +37,18 @@ void multiplication(char *num1, char *num2, int *result)
         }
 }
 
-void round_up(int *result)
+int round_up(int *result)
 {
-    size_t index = 59, j = 0;
+    size_t index = MAX_MULTI - 1, j = 0;
 
     while(result[j] == 0)
         j++;
 
     if (index - j < 30)
-        return;
+        return EXIT_SUCCESS;
 
     if (result[j + 30] < 5)
-        return;
+        return EXIT_SUCCESS;
 
     result[j + 29]++;
 
@@ -58,10 +58,13 @@ void round_up(int *result)
         {
             result[i-1] += result[i] / 10;
             result[i] %= 10;
+            if (result[j] == 0)
+                return EXIT_FAILURE;
         }
         else
-            return;
+            return EXIT_SUCCESS;
     }
+    return EXIT_SUCCESS;
 }
 
 int check_the_order(int order, int *result, int *count)
@@ -70,7 +73,7 @@ int check_the_order(int order, int *result, int *count)
 
     while(result[j] == 0)
         j++;
-    *count =  60 - j + order;
+    *count =  MAX_MULTI - j + order;
 
     if (abs(*count) > 99999)
         return EXIT_FAILURE;

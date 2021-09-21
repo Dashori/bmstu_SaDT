@@ -1,13 +1,12 @@
 #include "output.h"
 
-
 void rules(void)
 {
     printf("Rules for input:\n\
 When you enter the real number, please:\n\
 0.Enter elements of number without space\n\
 1.Enter the sign of mantissa(+ or -)\n\
-2.After the first point enter the mantissa(max 30 numbers and necessarily 1 point,\n\
+2.After the first point enter the mantissa(max 30 numbers,necessarily 1 point,\n\
 you must enter the number before point)\n\
 3.After the second point enter the symbol of exponenta - 'e'\n\
 4.After the third point enter the sign of order(+ or -)\n\
@@ -29,7 +28,7 @@ char check_the_sign(char sign_1, char sign_2)
 
 void print_multi_number(int *result, int count, char sign_1, char sign_2)
 {
-    size_t index = 60, end_2 = 60;
+    size_t index = MAX_MULTI, end_2 = MAX_MULTI;
     size_t end = 1;
     size_t j = 0, i = 0;
 

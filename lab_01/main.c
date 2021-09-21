@@ -30,7 +30,8 @@ Please check the rules and try again.\n");
     }
 
     multiplication(num.mantissa, num_int.int_num, result);
-    round_up(result);
+    if(round_up(result))
+        num.order++;
 
     if(check_the_order(num.order, result, &count))
     {

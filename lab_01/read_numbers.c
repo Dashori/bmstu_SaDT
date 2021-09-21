@@ -2,7 +2,8 @@
 
 int read_real_number(struct real_number *num)
 {
-    printf("Enter the real numbers according to the rules:");
+    printf("                      +...............................e+.....\n");
+    printf("Enter the real number:");
 
     if(fgets(num->real_num, MAX_STR, stdin) == NULL)
         return ERROR_IN_INPUT;
@@ -79,7 +80,8 @@ int input_order(struct real_number *num)
 
 int read_int_number(struct int_number *num)
 {
-    printf("Enter the integer number according the rules:");
+    printf("\n                         +..............................\n");
+    printf("Enter the integer number:");
 
     if(fgets(num->int_num, MAX_INT, stdin) == NULL)
         return ERROR_IN_INPUT;
@@ -102,6 +104,7 @@ int read_int_number(struct int_number *num)
 
     return EXIT_SUCCESS;
 }
+
 int trim(char *str)
 {
     if(str[strlen(str) - 1] != '\n')

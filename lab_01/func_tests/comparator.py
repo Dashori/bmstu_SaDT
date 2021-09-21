@@ -11,13 +11,13 @@ count = 0
 for line_g in g:
     arr = line_g.split()
     count += 1
-    if count == 18:
+    if count == 21:
         line = line_g
         flag = 0
 ##        print(line)
 ##        print("AAAA")
 if flag == -1:
-    print("BBB")
+    print("BBB", count)
     raise SystemExit(1)
 
 else:
