@@ -7,7 +7,7 @@ int main(void)
 
     struct real_number num = { 0 };
     struct int_number num_int = { 0 };
-    int result[60] = { 0 };
+    int result[MAX_MULTI] = { 0 };
     int count;
 
     setbuf(stdout, NULL);

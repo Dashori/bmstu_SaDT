@@ -6,6 +6,7 @@
 #include <string.h>
 
 #define MAX_MULTI 60
+#define MAX_ORDER 99999
 
 #define ERROR_OVERFLOW_ORDER 2
 

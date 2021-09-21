@@ -75,7 +75,7 @@ int check_the_order(int order, int *result, int *count)
         j++;
     *count =  MAX_MULTI - j + order;
 
-    if (abs(*count) > 99999)
+    if (abs(*count) > MAX_ORDER)
         return EXIT_FAILURE;
 
     return EXIT_SUCCESS;
