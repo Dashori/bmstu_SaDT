@@ -8,7 +8,7 @@
 
 #define MAX_STR 41
 #define MAX_MANTISSA 32
-#define MAX_ORDER 7
+#define MAX_ORDER_1 7
 #define MAX_INT 33
 
 #define ERROR_IN_INPUT 1

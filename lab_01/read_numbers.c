@@ -56,7 +56,7 @@ int input_order(struct real_number *num)
         return ERROR_IN_INPUT;
     num->sign_order = num->real_num[strlen(num->mantissa) + 2];
 
-    char order_char[MAX_ORDER];
+    char order_char[MAX_ORDER_1];
     size_t j = 0;
 
     for(size_t i = strlen(num->mantissa) + 3; i < strlen(num->real_num); i++)
