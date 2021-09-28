@@ -16,6 +16,18 @@
 *.gch
 *.pch
 
+#qtcreator
+*.cflags
+*.creator
+*.config
+*.creator.user
+*.files
+*.includes
+*.cxxflags
+
+*.gcda
+*.gcno
+
 # Libraries
 *.lib
 *.a
