@@ -27,6 +27,7 @@
 
 *.gcda
 *.gcno
+*.c.gcov
 
 # Libraries
 *.lib
