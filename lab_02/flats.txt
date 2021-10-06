@@ -1,0 +1,13 @@
+Russia Moscow Mira 14 4 60 2 40000 0 0
+Ukraine Prospetc Mira 14 5 65 3 41000 0 1
+Japan Seul Miadz 15 6 30 1 30000 1 2010 3 1 1
+Russia Chelyabinsk Lenina 89 12 80 3 41000 0 1 
+Russia Moscow Baumana 5 50 300 7 10000 0 1
+Ukrain Kiev Belaya 42 1 35 1 1900 1 1290 21 4 1
+Georgia Tbilisi Rot 32 12 129 4 2340 1 1823 32 9 1
+China Honkong Molodezh 78 3 100 3 10002 1 1900 90 4 0
+USA New-York Manh 45 2 30 1 12000 0 1
+Britan London Baker 13 27 80 2 56030 1 1864 90 3 0
+USA Brooklin Strats 10 2 209 5 9993 0 1
+Finland Lakers Green 12 2 90 2 8763 1 2001 7 2 1
+Canada Toronto Henrys 91 1 199 4 12311 0 1
