@@ -11,3 +11,14 @@ Britan London Baker 13 27 80 2 56030 1 1864 90 3 0
 USA Brooklin Strats 10 2 209 5 9993 0 1
 Finland Lakers Green 12 2 90 2 8763 1 2001 7 2 1
 Canada Toronto Henrys 91 1 199 4 12311 0 1
+Cypres Nicosia Ledra 34 99 76 3 12342 1 1867 89 4 1
+China Honkong Fidzhya 31 12 100 3 9123 1 2005 4 3 0
+Japan  Yokohama Shopping 43 12 101 3 3962 0 1
+Cuba Havana Enna 102 101 90 2 5342 1 1823 120 5 0
+Norway Oslo Snorres 12 32 45 1 8212 0 1
+Kazakhstan Almaty Gogol 43 99 120 4 9199 1 1970 21 4 1
+Russia Kerch Kerchinskaya 21 23 80 3 7162 0 1
+Canada Ottawa Welington 32 2 89 3 99182 0 1
+USA Washington 1stPresident 45 23 40 1 93241 1 2010 3 2 1
+USA New-York 1stman 33 12 30 2 31230 0 1
+Russia Sain-Petersburg Ladozhskaya 45 3 40 1 9234 1 1867 78 2 1

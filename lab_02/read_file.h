@@ -11,6 +11,5 @@ void print_table(struct flats *arr_flat, size_t count);
 int read_flat_adress(FILE *f,struct flats *flat);
 int read_flat(FILE *f,struct flats *flat);
 int read_secondary(FILE *f, struct flats *flat);
-void print_flat(struct flats flat);
-
+void print_flat(struct flats flat, size_t count);
 #endif

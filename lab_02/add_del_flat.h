@@ -2,6 +2,8 @@
 #define _ADD_DEL_FLAT_H 1
 
 #include "struct_flats.h"
+#include "read_file.h"
+
 #include "stdio.h"
 #include <stdlib.h>
 #include <string.h>
@@ -11,6 +13,12 @@
 #define ERROR_ADRESS 10
 #define ERROR_FLAT_PARAM 11
 
-int add_flat(FILE *f);
+int add_flat(struct flats *flat_arr, size_t *count);
+int add_adress(struct adress_flat *new_adress);
+int add_param_flat(struct flats *new_flat);
 int add_no_primary_flat(struct flats *new_flat);
+void add_file(struct flats *flat_arr);
+int del_flat(struct flats *flat_arr, size_t *count,int square);
+void swap(struct flats *flat_arr, size_t *count, size_t i);
+
 #endif
