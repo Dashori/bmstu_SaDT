@@ -21,4 +21,12 @@ Russia Kerch Kerchinskaya 21 23 80 3 7162 0 1
 Canada Ottawa Welington 32 2 89 3 99182 0 1
 USA Washington 1stPresident 45 23 40 1 93241 1 2010 3 2 1
 USA New-York 1stman 33 12 30 2 31230 0 1
-Russia Sain-Petersburg Ladozhskaya 45 3 40 1 9234 1 1867 78 2 1
+Russia Saint-Petersburg Ladozhskaya 45 3 40 1 9234 1 1867 78 2 1
+Australia Canberra Kangoroo 1 234 90 3 8124 1 1956 50 5 1
+Kazahstan Astana Belaya 5 35 132 4 8123 0 1
+Greece Korfy Spiridona 23 12 100 2 99123 1 1934 25 4 0
+Germany Munich Schwabing 7 12 45 1 92314 1 1967 23 2 1
+Russia Vladivostok Primorskaya 5 67 82 2 12445 0 1
+Estonia Tallinn Falks 6 12 128 2 54292 1 2009 6 6 0
+Russia Dubna Prospect3 32 12 101 4 91231 0 1
+Canada Toronto Wealy 10 12 123 4 1923 0 1

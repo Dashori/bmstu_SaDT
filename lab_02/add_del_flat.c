@@ -33,9 +33,8 @@ int add_flat(struct flats *flat_arr, size_t *count)
 
 int add_adress(struct adress_flat *new_adress)
 {
-    fgets(new_adress->country, MAX_COUNTRY, stdin);
+    getchar();
     printf("Enter the country: ");
-
     if ((fgets(new_adress->country, MAX_COUNTRY + 1, stdin) == NULL) || (trim(new_adress->country)))
     {
         printf("Error country. Please try again according the rules");
@@ -62,7 +61,7 @@ int add_adress(struct adress_flat *new_adress)
         return ERROR_ADRESS;
     }
 
-    printf("Enter the number of flat:");
+    printf("Enter the number of flat: ");
     if (scanf("%d", &new_adress->num_flat) != 1)
     {
         printf("Error number of flat. Please try again\n");
@@ -81,7 +80,7 @@ int add_param_flat(struct flats *new_flat)
         return ERROR_FLAT_PARAM;
     }
 
-    printf("Enter count of room:");
+    printf("Enter count of room: ");
     if(scanf("%d", &new_flat->room_number) != 1)
     {
         printf("Error count of room. Please try again\n");
@@ -180,6 +179,7 @@ int del_flat(struct flats *flat_arr, size_t *count, int square)
             swap(flat_arr, count, i);
             (*count)--;
         }
+
     return EXIT_SUCCESS;
 }
 

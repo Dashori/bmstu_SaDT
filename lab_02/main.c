@@ -2,6 +2,7 @@
 #include "menu.h"
 #include "add_del_flat.h"
 #include "read_file.h"
+#include "print.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -16,9 +17,13 @@ int main(void)
     size_t count = 0;
     int error = 0;
     struct flats flat_arr[MAX_FLAT];
+    struct keys key_arr[MAX_FLAT];
 
-    read_table(f, filename, flat_arr, &count);
+    if(read_table(f, filename, flat_arr, &count))
+        return EXIT_FAILURE;
+    read_table_key(flat_arr, key_arr, count);
 
+    print_info();
     print();
     if(scanf("%d", &key) != 1)
     {
@@ -28,9 +33,9 @@ int main(void)
     if (key == 0)
         return EXIT_SUCCESS;
 
-    while(!(error = check_key(key, flat_arr, &count)))
+    while(!(error = check_key(key, flat_arr, &count, key_arr)))
     {
-        printf("\nChoose key:");
+        print();
         if(scanf("%d", &key) != 1)
         {
             printf("Error key, please, try again according the rules\n");
@@ -41,7 +46,5 @@ int main(void)
     }
 
     return error;
-
-    return EXIT_SUCCESS;
 
 }

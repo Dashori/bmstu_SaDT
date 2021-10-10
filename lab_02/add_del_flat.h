@@ -1,8 +1,9 @@
 #ifndef _ADD_DEL_FLAT_H
-#define _ADD_DEL_FLAT_H 1
+#define _ADD_DEL_FLAT_H
 
 #include "struct_flats.h"
 #include "read_file.h"
+#include "print.h"
 
 #include "stdio.h"
 #include <stdlib.h>

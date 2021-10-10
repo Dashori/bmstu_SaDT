@@ -1,10 +1,9 @@
 #ifndef _STRUCT_FLATS_H
-#define _STRUCT_FLATS_H 1
+#define _STRUCT_FLATS_H
 
-#define MAX_OWNERS 30
-#define MAX_COUNTRY 30
-#define MAX_CITY 20
-#define MAX_STREET 30
+#define MAX_COUNTRY 15
+#define MAX_CITY 17
+#define MAX_STREET 15
 #define MAX_FLAT 60
 
 struct secondary_flat
@@ -40,5 +39,10 @@ struct flats
     union is_primary_flat primary;
 };
 
+struct keys
+{
+    int index;
+    int square;
+};
 
 #endif
