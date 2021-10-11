@@ -1,6 +1,5 @@
 #ifndef _PRINT_H
-#define _PRINT_H 1
-
+#define _PRINT_H
 
 #include "struct_flats.h"
 

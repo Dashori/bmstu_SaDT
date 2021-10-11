@@ -34,10 +34,12 @@ int find_flats(struct flats *arr_flats, size_t count)
             print_flat(*(arr_flats + i), n++);
         }
     if (!flag)
+    {
         printf("|                                                          there are no necessary apartments\
                                                               |\n");
-    printf("|---|---------------|----------------|---------------|-------\
+        printf("|---|---------------|----------------|---------------|-------\
 |------|--------|------|-----------|-----|---------|-------|------------|-------------|------|\n");
 
+    }
     return EXIT_SUCCESS;
 }

@@ -9,5 +9,4 @@
 
 int find_flats(struct flats *arr_flats, size_t count);
 
-
 #endif

@@ -91,7 +91,8 @@ void print(void)
 9 - Show sort table by square (quick sort)\n\
 10 - Show sort table by square with table (bubble sort)\n\
 11 - Show sort table by square with table (quick sort)\n\
-Choose key:");
+12 - Compare time for bubble sort/qsort and table/table_key \n\
+Choose key: ");
 }
 
 void print_rules_add(void)

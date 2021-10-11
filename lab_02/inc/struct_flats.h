@@ -4,7 +4,7 @@
 #define MAX_COUNTRY 15
 #define MAX_CITY 17
 #define MAX_STREET 15
-#define MAX_FLAT 60
+#define MAX_FLAT 200
 
 struct secondary_flat
 {

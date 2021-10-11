@@ -5,6 +5,7 @@
 #include <stdlib.h>
 
 #include "struct_flats.h"
+
 int read_table(FILE *f, char *filename, struct flats *flat, size_t *count);
 void read_table_key(struct flats *flat, struct keys *key, size_t count);
 int read_flat_adress(FILE *f,struct flats *flat);

@@ -14,19 +14,27 @@ int trim(char *s)
     return EXIT_SUCCESS;
 }
 
-int add_flat(struct flats *flat_arr, size_t *count)
+int add_flat(struct flats *flat_arr, size_t *count, char *filename)
 {
     setbuf(stdout, NULL);
+    if (*count == MAX_FLAT)
+    {
+        printf("It is impossible to add an apartment,\
+since there are 200 of them at most.");
+        return ERROR_MAX_FLAT;
+    }
 
     int n = *count;
     if(add_adress(&flat_arr[n].adress))
         return ERROR_ADRESS;
+
     if (add_param_flat(&flat_arr[n]))
         return ERROR_FLAT_PARAM;
     (*count)++;
-    print_table(flat_arr, *count);
 
-    add_file(&flat_arr[n]);
+    FILE *f = fopen(filename, "a");
+    add_file(&flat_arr[n], f);
+    fclose(f);
 
     return EXIT_SUCCESS;
 }
@@ -76,21 +84,21 @@ int add_param_flat(struct flats *new_flat)
     printf("Enter the square of flat: ");
     if(scanf("%d", &new_flat->square) != 1)
     {
-        printf("Error square of flat. Please try again\n");
+        printf("Error square of flat. Please try again.\n");
         return ERROR_FLAT_PARAM;
     }
 
     printf("Enter count of room: ");
     if(scanf("%d", &new_flat->room_number) != 1)
     {
-        printf("Error count of room. Please try again\n");
+        printf("Error count of room. Please try again.\n");
         return ERROR_FLAT_PARAM;
     }
 
     printf("Enter cost of 1 square metr: ");
     if(scanf("%d", &new_flat->cost_square_meter) != 1)
     {
-        printf("Error value of cost of 1 square metr. Please try again\n");
+        printf("Error value of cost of 1 square metr. Please try again.\n");
         return ERROR_FLAT_PARAM;
     }
 
@@ -98,7 +106,7 @@ int add_param_flat(struct flats *new_flat)
     if ((scanf("%d", &new_flat->is_primary) != 1) ||
     (new_flat->is_primary != 0 && new_flat->is_primary != 1))
     {
-        printf("Error value about new flat or not. Please try again\n");
+        printf("Error value about new flat or not. Please try again.\n");
         return ERROR_FLAT_PARAM;
     }
 
@@ -107,7 +115,7 @@ int add_param_flat(struct flats *new_flat)
         printf("Enter 0 if flat with fishing and 1 in another way: ");
         if (scanf("%d", &new_flat->primary.is_fishing) != 1)
         {
-            printf("Error value about fishing flat. Please try again\n");
+            printf("Error value about fishing flat. Please try again.\n");
             return ERROR_FLAT_PARAM;
         }
     }
@@ -117,20 +125,25 @@ int add_param_flat(struct flats *new_flat)
     return EXIT_SUCCESS;
 }
 
-void add_file(struct flats *flat_arr)
+void add_file(struct flats *flat_arr, FILE *f)
 {
-    FILE *f = fopen("flats.txt", "a");
-
-    fprintf(f, "\n%s %s %s %d %d %d %d %d ", flat_arr->adress.country, flat_arr->adress.city,
-    flat_arr->adress.street, flat_arr->adress.num_house, flat_arr->adress.num_flat, flat_arr->square, flat_arr->room_number,
-    flat_arr->cost_square_meter);
+    fprintf(f, "%s %s %s %d %d %d %d %d ", flat_arr->adress.country, flat_arr->adress.city,
+    flat_arr->adress.street, flat_arr->adress.num_house, flat_arr->adress.num_flat,
+    flat_arr->square, flat_arr->room_number, flat_arr->cost_square_meter);
 
     if (flat_arr->is_primary)
-        fprintf(f, "%d %d %d %d %d",flat_arr->is_primary, flat_arr->primary.secondary.year,
+        fprintf(f, "%d %d %d %d %d\n",flat_arr->is_primary, flat_arr->primary.secondary.year,
     flat_arr->primary.secondary.all_owners, flat_arr->primary.secondary.count_last_owners,
     flat_arr->primary.secondary.animals);
     else
-        fprintf(f, "%d %d", flat_arr->is_primary, flat_arr->primary.is_fishing);
+        fprintf(f, "%d %d\n", flat_arr->is_primary, flat_arr->primary.is_fishing);
+}
+
+void del_file(struct flats *flat_arr, size_t count, char *filename)
+{
+    FILE *f = fopen(filename, "w");
+    for(size_t i = 0; i < count; i++)
+        add_file(&flat_arr[i], f);
     fclose(f);
 }
 
@@ -140,7 +153,7 @@ int add_no_primary_flat(struct flats *new_flat)
     if (scanf("%d", &(new_flat->primary).secondary.year) != 1
     || new_flat->primary.secondary.year <= 0 || new_flat->primary.secondary.year > 2021)
     {
-        printf("Error year value. Please try again\n");
+        printf("Error year value. Please try again.\n");
         return ERROR_FLAT_PARAM;
     }
 
@@ -156,7 +169,7 @@ int add_no_primary_flat(struct flats *new_flat)
     if ((scanf("%d", &(new_flat->primary.secondary).count_last_owners) != 1)
             || ((new_flat->primary).secondary.count_last_owners < 0))
     {
-        printf("Error count of last owners. Please try again\n");
+        printf("Error count of last owners. Please try again.\n");
         return ERROR_FLAT_PARAM;
     }
 
@@ -164,14 +177,14 @@ int add_no_primary_flat(struct flats *new_flat)
     if((scanf("%d", &(new_flat->primary).secondary.animals) != 1) &&
     (new_flat->primary.secondary.animals != 0 || new_flat->primary.secondary.animals != 1))
     {
-        printf("Error information about animals. Please try again\n");
+        printf("Error information about animals. Please try again.\n");
         return ERROR_FLAT_PARAM;
     }
 
     return EXIT_SUCCESS;
 }
 
-int del_flat(struct flats *flat_arr, size_t *count, int square)
+void del_flat(struct flats *flat_arr, size_t *count, int square, char *filename)
 {
     for(size_t i = 0; i < *count; i++)
         if ((flat_arr + i)->square == square)
@@ -180,7 +193,7 @@ int del_flat(struct flats *flat_arr, size_t *count, int square)
             (*count)--;
         }
 
-    return EXIT_SUCCESS;
+    del_file(flat_arr, *count, filename);
 }
 
 void swap(struct flats *flat_arr, size_t *count, size_t i)
@@ -205,9 +218,5 @@ void swap(struct flats *flat_arr, size_t *count, size_t i)
                     ((flat_arr + j + 1)->primary).secondary.animals;
         }
         (flat_arr + j)->is_primary = (flat_arr +j + 1)->is_primary;
-
     }
 }
-
-
-

@@ -9,6 +9,9 @@ int read_table(FILE *f, char *filename, struct flats *flat, size_t *count)
     *count = 0;
     while (!read_flat(f, &flat[*count]))
         (*count)++;
+
+    fclose(f);
+
     return EXIT_SUCCESS;
 }
 
@@ -73,5 +76,3 @@ void read_table_key(struct flats *flat, struct keys *key, size_t count)
         (key + i)->square = (flat + i)->square;
     }
 }
-
-
