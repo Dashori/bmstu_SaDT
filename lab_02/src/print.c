@@ -34,11 +34,11 @@ void print_table_key(struct keys *key_arr, size_t count)
 void print_flat(struct flats flat, size_t count)
 {
     printf("|%*zu|", 3,  count);
-    printf("%*s|", 15, flat.adress.country);
-    printf("%*s|", 16, flat.adress.city);
-    printf("%*s|", 15, flat.adress.street);
-    printf("%*d|", 7,flat.adress.num_house);
-    printf("%*d|", 6, flat.adress.num_flat);
+    printf("%*s|", 15, flat.address.country);
+    printf("%*s|", 16, flat.address.city);
+    printf("%*s|", 15, flat.address.street);
+    printf("%*d|", 7,flat.address.num_house);
+    printf("%*d|", 6, flat.address.num_flat);
     printf("%*d|", 8, flat.square);
     printf("%*d|", 6, flat.room_number);
     printf("%*d|", 11, flat.cost_square_meter);

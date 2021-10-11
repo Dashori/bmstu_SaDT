@@ -25,7 +25,7 @@ since there are 200 of them at most.");
     }
 
     int n = *count;
-    if(add_adress(&flat_arr[n].adress))
+    if(add_address(&flat_arr[n].address))
         return ERROR_ADRESS;
 
     if (add_param_flat(&flat_arr[n]))
@@ -39,38 +39,38 @@ since there are 200 of them at most.");
     return EXIT_SUCCESS;
 }
 
-int add_adress(struct adress_flat *new_adress)
+int add_address(struct address_flat *new_address)
 {
     getchar();
     printf("Enter the country: ");
-    if ((fgets(new_adress->country, MAX_COUNTRY + 1, stdin) == NULL) || (trim(new_adress->country)))
+    if ((fgets(new_address->country, MAX_COUNTRY + 1, stdin) == NULL) || (trim(new_address->country)))
     {
         printf("Error country. Please try again according the rules");
         return ERROR_ADRESS;
     }
 
     printf("Enter the city: ");
-    if ((fgets(new_adress->city, MAX_CITY + 1, stdin) == NULL) || (trim(new_adress->city)))
+    if ((fgets(new_address->city, MAX_CITY + 1, stdin) == NULL) || (trim(new_address->city)))
     {
         printf("Error city. Please try again according the rules");
         return ERROR_ADRESS;
     }
     printf("Enter the street: ");
 
-    if ((fgets(new_adress->street, MAX_STREET + 1, stdin) == NULL) || trim(new_adress->street))
+    if ((fgets(new_address->street, MAX_STREET + 1, stdin) == NULL) || trim(new_address->street))
     {
         printf("Error street. Please try again according the rules");
         return ERROR_ADRESS;
     }
     printf("Enter the number of house: ");
-    if (scanf("%d", &new_adress->num_house) != 1)
+    if (scanf("%d", &new_address->num_house) != 1)
     {
         printf("Error number of house. Please try again\n");
         return ERROR_ADRESS;
     }
 
     printf("Enter the number of flat: ");
-    if (scanf("%d", &new_adress->num_flat) != 1)
+    if (scanf("%d", &new_address->num_flat) != 1)
     {
         printf("Error number of flat. Please try again\n");
         return ERROR_ADRESS;
@@ -127,8 +127,8 @@ int add_param_flat(struct flats *new_flat)
 
 void add_file(struct flats *flat_arr, FILE *f)
 {
-    fprintf(f, "%s %s %s %d %d %d %d %d ", flat_arr->adress.country, flat_arr->adress.city,
-    flat_arr->adress.street, flat_arr->adress.num_house, flat_arr->adress.num_flat,
+    fprintf(f, "%s %s %s %d %d %d %d %d ", flat_arr->address.country, flat_arr->address.city,
+    flat_arr->address.street, flat_arr->address.num_house, flat_arr->address.num_flat,
     flat_arr->square, flat_arr->room_number, flat_arr->cost_square_meter);
 
     if (flat_arr->is_primary)
@@ -200,7 +200,7 @@ void swap(struct flats *flat_arr, size_t *count, size_t i)
 {
     for(size_t j = i; j < *count - 1; j++)
     {
-        (flat_arr + j)->adress = (flat_arr + j +1)->adress;
+        (flat_arr + j)->address = (flat_arr + j +1)->address;
         (flat_arr + j)->square = (flat_arr + j +1)->square;
         (flat_arr + j)->room_number = (flat_arr + j +1)->room_number;
         (flat_arr + j)->cost_square_meter = (flat_arr + j +1)->cost_square_meter;

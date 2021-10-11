@@ -2,7 +2,7 @@
 #define _STRUCT_FLATS_H
 
 #define MAX_COUNTRY 15
-#define MAX_CITY 17
+#define MAX_CITY 15
 #define MAX_STREET 15
 #define MAX_FLAT 200
 
@@ -14,7 +14,7 @@ struct secondary_flat
     int animals;
 };
 
-struct adress_flat
+struct address_flat
 {
     char country[MAX_COUNTRY];
     char city[MAX_CITY];
@@ -31,7 +31,7 @@ union is_primary_flat
 
 struct flats
 {
-    struct adress_flat adress;
+    struct address_flat address;
     int square;
     int room_number;
     int cost_square_meter;

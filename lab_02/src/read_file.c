@@ -17,7 +17,7 @@ int read_table(FILE *f, char *filename, struct flats *flat, size_t *count)
 
 int read_flat(FILE *f, struct flats *flat)
 {
-    if(read_flat_adress(f, flat))
+    if(read_flat_address(f, flat))
         return EXIT_FAILURE;
     if (fscanf(f, "%d", &(flat->square)) != 1)
         return EXIT_FAILURE;
@@ -38,17 +38,17 @@ int read_flat(FILE *f, struct flats *flat)
 
     return EXIT_SUCCESS;
 }
-int read_flat_adress(FILE *f, struct flats *flat)
+int read_flat_address(FILE *f, struct flats *flat)
 {
-    if (fscanf(f, "%s", flat->adress.country) != 1)
+    if (fscanf(f, "%s", flat->address.country) != 1)
         return  EXIT_FAILURE;
-    if (fscanf(f, "%s", flat->adress.city) != 1)
+    if (fscanf(f, "%s", flat->address.city) != 1)
         return EXIT_FAILURE;
-    if (fscanf(f, "%s", flat->adress.street) != 1)
+    if (fscanf(f, "%s", flat->address.street) != 1)
         return EXIT_FAILURE;
-    if (fscanf(f, "%d", &(flat->adress).num_house) != 1)
+    if (fscanf(f, "%d", &(flat->address).num_house) != 1)
         return EXIT_FAILURE;
-    if (fscanf(f, "%d", &(flat->adress).num_flat) != 1)
+    if (fscanf(f, "%d", &(flat->address).num_flat) != 1)
         return EXIT_FAILURE;
 
     return EXIT_SUCCESS;
