@@ -63,14 +63,14 @@ int add_address(struct address_flat *new_address)
         return ERROR_ADRESS;
     }
     printf("Enter the number of house: ");
-    if (scanf("%d", &new_address->num_house) != 1)
+    if (scanf("%d", &new_address->num_house) != 1 || (new_address->num_house < 1))
     {
         printf("Error number of house. Please try again\n");
         return ERROR_ADRESS;
     }
 
     printf("Enter the number of flat: ");
-    if (scanf("%d", &new_address->num_flat) != 1)
+    if (scanf("%d", &new_address->num_flat) != 1 || (new_address->num_flat < 1))
     {
         printf("Error number of flat. Please try again\n");
         return ERROR_ADRESS;
@@ -82,21 +82,21 @@ int add_address(struct address_flat *new_address)
 int add_param_flat(struct flats *new_flat)
 {
     printf("Enter the square of flat: ");
-    if(scanf("%d", &new_flat->square) != 1)
+    if(scanf("%d", &new_flat->square) != 1 || new_flat->square < 1)
     {
         printf("Error square of flat. Please try again.\n");
         return ERROR_FLAT_PARAM;
     }
 
     printf("Enter count of room: ");
-    if(scanf("%d", &new_flat->room_number) != 1)
+    if(scanf("%d", &new_flat->room_number) != 1 || new_flat->room_number < 1)
     {
         printf("Error count of room. Please try again.\n");
         return ERROR_FLAT_PARAM;
     }
 
     printf("Enter cost of 1 square metr: ");
-    if(scanf("%d", &new_flat->cost_square_meter) != 1)
+    if(scanf("%d", &new_flat->cost_square_meter) != 1 || new_flat->cost_square_meter < 1)
     {
         printf("Error value of cost of 1 square metr. Please try again.\n");
         return ERROR_FLAT_PARAM;
@@ -143,7 +143,7 @@ void del_file(struct flats *flat_arr, size_t count, char *filename)
 {
     FILE *f = fopen(filename, "w");
     for(size_t i = 0; i < count; i++)
-        add_file(&flat_arr[i], f);
+        add_file((flat_arr + i), f);
     fclose(f);
 }
 

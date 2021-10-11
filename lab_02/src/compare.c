@@ -23,8 +23,8 @@ void compare_sort(struct flats *flat, size_t count, struct keys *key)
 
 
     }
-    printf("\nBubble sort table: %lf\n", (double)res_b);
-    printf("Bubble sort key table: %lf\n", (double)res_b_key);
+    printf("\nBubble sort table:    %lf\n", (double)res_b);
+    printf("Bubble sort key table:  %lf\n", (double)res_b_key);
 
     clock_t start_q, end_q, start_q_key, end_q_key;
     clock_t res_q = 0, res_q_key = 0;
@@ -47,7 +47,13 @@ void compare_sort(struct flats *flat, size_t count, struct keys *key)
         res_q_key += (end_q_key - start_q_key);
     }
 
-    printf("\nQsort table: %lf\n", (double)res_q);
-    printf("Qsort table key: %lf\n", (double)res_q_key);
+    printf("\nQsort table:     %lf\n", (double)res_q);
+    printf("Qsort table key:   %lf\n", (double)res_q_key);
+
+    size_t size_key = sizeof (struct keys) * count;
+    size_t size_tab = sizeof (struct flats) * count;
+    printf("\nSize of memory with key table: %zu", size_key);
+    printf("\nSize  of  memory  with  table: %zu\n", size_tab);
+
 
 }

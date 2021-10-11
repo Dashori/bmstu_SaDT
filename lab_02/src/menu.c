@@ -37,6 +37,8 @@ int check_key(int key, struct flats *flat_arr, size_t *count, struct keys *key_a
             del_flat(flat_arr, count, square, filename);
             if (n == *count)
                 printf("No flats with this square.\n");
+            else
+                printf("Successfully deleted\n");
             break;
         }
 
@@ -45,18 +47,15 @@ int check_key(int key, struct flats *flat_arr, size_t *count, struct keys *key_a
         break;
 
     case 5:
-        read_table_key(flat_arr, key_arr, *count);
         print_table_key(key_arr, *count);
         break;
 
     case 6:
-        read_table_key(flat_arr, key_arr, *count);
         sort_table_key(key_arr, *count);
         print_table_key(key_arr, *count);
         break;
 
     case 7:
-        read_table_key(flat_arr, key_arr, *count);
         qsort_table_key(key_arr, *count);
         print_table_key(key_arr, *count);
         break;
@@ -72,13 +71,12 @@ int check_key(int key, struct flats *flat_arr, size_t *count, struct keys *key_a
         break;
 
     case 10:
-        read_table_key(flat_arr, key_arr, *count);
         sort_table_key(key_arr, *count);
         sort_table_with_key(flat_arr, *count, key_arr);
         break;
 
     case 11:
-        read_table_key(flat_arr, key_arr, *count);
+//        read_table_key(flat_arr, key_arr, *count);
         qsort_table_key(key_arr, *count);
         sort_table_with_key(flat_arr, *count, key_arr);
         break;
