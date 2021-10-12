@@ -1,0 +1,42 @@
+
+Japan Seul Miadz 15 6 30 1 30000 1 2010 3 1 1
+Russia Chelyabinsk Lenina 89 12 80 3 41000 0 1
+Russia Moscow Baumana 5 50 300 7 10000 0 1
+Ukrain Kiev Belaya 42 1 35 1 1900 1 1290 21 4 1
+Georgia Tbilisi Rot 32 12 129 4 2340 1 1823 32 9 1
+China Honkong Molodezh 78 3 100 3 10002 1 1900 90 4 0
+USA New-York Manh 45 2 30 1 12000 0 1
+Britan London Baker 13 27 80 2 56030 1 1864 90 3 0
+USA Brooklin Strats 10 2 209 5 9993 0 1
+Finland Lakers Green 12 2 90 2 8763 1 2001 7 2 1
+Cypres Nicosia Ledra 34 99 76 3 12342 1 1867 89 4 1
+China Honkong Fidzhya 31 12 100 3 9123 1 2005 4 3 0
+Japan Yokohama Shopping 43 12 101 3 3962 0 1
+Cuba Havana Enna 102 101 90 2 5342 1 1823 120 5 0
+Norway Oslo Snorres 12 32 45 1 8212 0 1
+Kazakhstan Almaty Gogol 43 99 120 4 9199 1 1970 21 4 1
+Russia Kerch Kerchinskaya 21 23 80 3 7162 0 1
+Canada Ottawa Welington 32 2 89 3 99182 0 1
+USA Washington 1stPresident 45 23 40 1 93241 1 2010 3 2 1
+USA New-York 1stman 33 12 30 2 31230 0 1
+Russia SaintPeter Ladozhskaya 45 3 40 1 9234 1 1867 78 2 1
+Australia Canberra Kangoroo 1 234 90 3 8124 1 1956 50 5 1
+Kazahstan Astana Belaya 5 35 132 4 8123 0 1
+Greece Korfy Spiridona 23 12 100 2 99123 1 1934 25 4 0
+Germany Munich Schwabing 7 12 45 1 92314 1 1967 23 2 1
+Russia Vladivostok Primorskaya 5 67 82 2 12445 0 1
+Estonia Tallinn Falks 6 12 128 2 54292 1 2009 6 6 0
+Russia Dubna Prospect3 32 12 101 4 91231 0 1
+Canada Toronto Wealy 10 12 123 4 1923 0 1
+Russia Omsk Red 3 123 90 3 19321 0 0
+Chezh Prague Green 12 2 100 3 2919 1 1949 80 4 1
+Italy Rome Colisis 12 4 94 3 93120 1 1899 15 3 1
+Ukraine Odessa Pyatiletka 23 45 80 3 31843 1 1994 32 4 1
+Greece Afiny Zevsa 23 45 79 4 92314 1 1945 24 3 1
+Russia Omsk Belaya 34 1 50 2 71282 0 1
+Japan Yokohama Sohoy 312 89 90 3 98123 1 1992 4 4 0
+Britain London Baker 9 12 103 4 99992 1 1948 80 6 1
+Germany Hamburg Yels 34 2 90 3 9431 1 1998 43 4 1
+Russia Sochi Lenina 43 1 70 3 19824 0 1
+Bulgaria Sofia 12st 4 93 104 4 82394 1 1995 15 5 1
+Russia Moscow Kazakovo 15 25 80 2 5500 1 1960 3 1 0

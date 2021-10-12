@@ -13,7 +13,7 @@ int main(void)
 {
     setbuf(stdout, NULL);
     FILE *f = NULL;
-    char *filename = "flats2.txt";
+    char *filename = "flats40.txt";
     int key;
     size_t count = 0;
     int error = 0;

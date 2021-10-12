@@ -100,8 +100,7 @@ void print_rules_add(void)
     printf("\nWhen you enter the flat to table:\n\
 The city, street and country should be written in one word and max len is 15 symbols.\n\
 Parametrs of flat are integer numbers.\
-Please enter them without spaces and letters\n\
-\n");
+Please enter them without spaces and letters.\n\n");
 }
 
 void print_rules_del(void)

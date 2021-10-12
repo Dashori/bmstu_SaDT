@@ -1,0 +1,200 @@
+Germany Humburg Revolution 91 93 123 8 59631 0 1 
+Ukraine Colorado Lenina 66 38 236 3 99346 0 1 
+Ukraine Minsk Baumana 86 91 58 5 17703 1 2004 94 3 0
+Australia Odessa Lity 99 37 267 9 10514 0 1 
+Australia Colorado Kirta 16 3 232 9 52724 0 1 
+USA London Pervaya 12 13 184 3 17117 0 1 
+Ukraine Zavolzhye Heroes 41 47 133 4 46175 0 1 
+Japan Colorado Lenina 87 47 283 3 25940 0 1 
+Ukraine Odessa Minskay 48 30 286 8 64144 1 2000 67 2 1
+China Chelyabinsk Lenina 5 1 88 4 36924 1 2015 4 4 0
+Belarus Sochi Kirta 20 2 265 5 88977 1 1964 25 7 1
+Germany Seul Revolution 59 65 166 10 82684 1 1965 73 8 0
+Britain Honkong Prospect 51 1 67 9 69803 1 1985 67 6 1
+Russia Zavolzhye Revolution 30 62 300 9 96147 1 1900 76 3 0
+Britain Minsk Kirta 73 97 281 3 54458 1 1927 45 1 1
+Russia Moscow Baumana 41 58 156 7 1548 1 1902 7 3 0
+Australia Belgorod Baumana 32 49 131 7 74688 0 1 
+Britain Sochi Heroes 96 49 260 9 41928 1 1920 70 3 0
+Germany Seul Lenina 24 74 223 9 4862 0 0 
+Belarus Belgorod Lity 5 24 150 1 8373 0 0 
+Ukraine Humburg Revolution 4 29 141 1 97203 0 1 
+Ukraine Honkong Heroes 60 96 256 5 15396 1 2007 9 4 1
+Ukraine Sochi Heroes 98 49 92 4 3169 0 1 
+Ukraine Belgorod Pervaya 51 42 217 4 86817 1 1921 59 6 1
+Ukraine Moscow Lenina 77 70 214 3 29966 0 1 
+Japan Humburg Baumana 87 64 263 2 81020 1 1934 44 5 1
+Australia Belgorod Minskay 1 31 241 5 31626 1 1917 26 3 0
+Belarus Honkong Heroes 2 62 198 1 25447 1 1956 55 6 0
+Georgia Odessa Minskay 68 75 171 7 50834 1 1988 26 8 0
+Germany Chelyabinsk Baumana 12 7 105 2 89321 0 0 
+Ukraine Honkong Prospect 75 86 143 1 58436 0 0 
+Japan Zavolzhye Heroes 56 11 124 6 14426 0 0 
+Japan Humburg Pushkina 81 78 67 7 48334 0 0 
+Bulgary Seul Heroes 78 86 47 5 76483 1 2012 36 9 1
+Belarus Odessa Kirta 36 87 223 3 71388 1 1971 92 1 0
+USA Odessa Baumana 43 29 74 8 68534 0 1 
+Britain London Lenina 45 40 33 3 81490 1 1907 7 2 1
+Japan Sochi Minskay 47 60 283 3 38323 0 1 
+Australia Moscow Revolution 32 64 299 9 44187 0 1 
+China Minsk Kirta 69 87 177 7 68635 0 1 
+China Seul Pushkina 51 51 256 3 70154 1 1929 92 6 0
+Russia Seul Colorars 73 26 163 3 20762 0 1 
+Japan Odessa Pushkina 63 23 176 1 69942 1 1982 58 1 1
+China Humburg Lenina 50 95 118 7 28581 1 1933 95 1 0
+Georgia Colorado Minskay 23 20 216 10 82186 1 1902 14 4 0
+Britain Chelyabinsk Minskay 94 67 105 8 80842 0 0 
+China Humburg Heroes 84 93 189 2 86518 1 1962 68 4 0
+Bulgary Colorado Pushkina 76 61 128 1 95803 0 0 
+Germany Belgorod Revolution 79 26 187 5 20102 1 1911 82 9 1
+Georgia Colorado Heroes 20 48 127 9 12202 1 1976 98 6 1
+Britain Honkong Minskay 80 67 298 4 20772 0 1 
+Georgia Honkong Pushkina 43 36 121 9 61726 1 2009 4 7 1
+Bulgary Chelyabinsk Revolution 9 70 184 10 70086 0 1 
+China Zavolzhye Revolution 36 17 151 8 83412 0 0 
+Japan Honkong Pushkina 96 50 123 4 18591 0 1 
+Germany London Kirta 32 77 168 5 45356 1 2006 30 7 0
+Bulgary Humburg Heroes 41 94 297 1 76173 0 1 
+Germany Minsk Baumana 71 99 78 7 96001 0 0 
+Japan Minsk Pervaya 17 41 205 1 72737 1 1985 46 3 1
+USA Sochi Baumana 73 67 146 3 98524 1 2014 38 5 0
+Russia Colorado Pervaya 79 70 193 9 92674 1 1922 61 6 1
+Germany Zavolzhye Lenina 97 100 81 7 42950 0 0 
+Georgia Moscow Lity 13 2 119 1 88044 1 1992 18 8 0
+Australia Moscow Revolution 82 17 291 1 58832 1 1931 17 7 0
+Bulgary Odessa Lity 53 44 98 4 91792 0 1 
+Britain Honkong Kirta 39 34 257 3 96194 0 0 
+USA Colorado Revolution 55 46 161 5 54137 0 1 
+Belarus Sochi Minskay 69 83 297 10 19687 0 1 
+Germany Chelyabinsk Pushkina 71 88 161 6 2882 1 1989 50 4 0
+Bulgary Minsk Baumana 3 42 171 1 42952 1 1913 60 1 0
+Ukraine Humburg Revolution 82 97 78 3 46967 1 2002 2 4 1
+Ukraine London Kirta 88 97 77 7 15359 1 1901 34 8 1
+China Moscow Colorars 39 62 122 5 50873 0 1 
+Russia Honkong Minskay 78 12 57 8 75217 0 1 
+Australia Humburg Pervaya 18 92 180 2 24209 1 1944 15 7 1
+Australia Odessa Pervaya 28 80 244 10 40199 0 1 
+Germany Humburg Baumana 68 31 296 6 2462 1 1936 34 7 1
+Belarus Zavolzhye Pervaya 67 98 106 5 30559 0 0 
+Russia Honkong Revolution 39 49 300 3 80759 0 1 
+Georgia Zavolzhye Revolution 97 29 182 9 77570 0 1 
+Russia Belgorod Baumana 27 47 194 1 72049 1 1905 45 4 0
+Ukraine Odessa Prospect 86 33 250 3 17001 1 2000 99 6 0
+Ukraine Humburg Prospect 45 79 99 10 85384 1 1908 79 1 1
+Ukraine Moscow Revolution 81 49 112 5 95108 1 2003 24 7 0
+Australia Sochi Heroes 63 62 120 3 16867 0 1 
+USA London Minskay 35 65 44 8 5388 0 1 
+China Chelyabinsk Baumana 71 71 188 4 2095 1 2013 81 8 0
+Japan Minsk Lity 22 14 155 8 29858 0 1 
+Russia Seul Colorars 86 24 45 1 81598 1 1966 62 9 0
+Russia Moscow Heroes 83 87 122 8 94939 0 1 
+Georgia Zavolzhye Baumana 74 8 243 6 32929 1 1936 74 8 1
+Japan Chelyabinsk Revolution 76 24 77 2 23705 1 1997 63 3 0
+China Seul Colorars 38 68 184 7 39770 0 1 
+Russia Minsk Revolution 19 19 135 9 17280 1 1950 85 6 0
+China Honkong Heroes 92 43 192 3 5088 1 2021 88 5 1
+Australia Belgorod Lity 14 65 58 7 67355 0 1 
+Russia Seul Kirta 70 36 211 8 33669 0 1 
+Russia Chelyabinsk Pushkina 14 5 145 9 23789 0 0 
+Belarus London Heroes 92 66 51 5 34075 0 0 
+Ukraine Seul Minskay 87 7 59 3 85274 1 1976 23 8 0
+Belarus Honkong Colorars 37 77 52 3 38728 0 0 
+Georgia Belgorod Kirta 51 84 37 10 35815 1 2001 72 10 0
+Australia Odessa Minskay 49 6 280 2 35013 1 1978 96 2 0
+Britain Colorado Baumana 75 45 44 3 21715 1 1988 94 10 1
+Georgia Belgorod Revolution 44 84 172 2 89311 1 1938 55 1 0
+Georgia Zavolzhye Heroes 7 31 163 2 60525 1 1991 62 6 0
+Ukraine Chelyabinsk Heroes 43 54 245 5 31125 1 1931 77 5 0
+Bulgary Seul Baumana 70 26 254 3 52783 0 0 
+Britain Honkong Baumana 62 20 289 3 49582 0 0 
+Russia Seul Colorars 26 100 118 9 51107 1 1901 99 1 0
+Japan Honkong Kirta 43 1 216 9 46685 1 2001 59 6 1
+Australia Zavolzhye Prospect 53 50 278 8 96284 0 1 
+Bulgary Chelyabinsk Pervaya 92 78 129 9 88632 1 1954 36 1 0
+Belarus Honkong Baumana 42 72 93 10 25068 0 1 
+Ukraine Belgorod Lity 83 75 156 9 21584 0 1 
+Georgia Humburg Colorars 36 78 178 9 35432 0 0 
+Britain Colorado Kirta 95 42 157 10 52918 1 1943 87 6 1
+China Humburg Lenina 87 57 172 9 59377 0 1 
+Japan Odessa Kirta 64 82 42 6 91852 0 0 
+Japan Humburg Lity 100 94 58 3 2211 1 1955 34 6 1
+Russia Odessa Kirta 18 26 114 5 92549 0 1 
+Australia Odessa Minskay 57 88 275 3 14763 0 0 
+Australia Odessa Prospect 56 78 239 4 15637 1 1921 50 8 0
+Belarus Chelyabinsk Kirta 31 31 130 3 78811 1 1959 63 2 1
+Australia Humburg Lenina 87 46 189 2 49469 1 1932 1 8 1
+Ukraine Seul Pervaya 39 81 298 3 80264 0 1 
+Georgia Odessa Pervaya 58 66 243 6 97522 0 0 
+Georgia Honkong Prospect 16 49 244 1 65378 1 1928 69 9 1
+Bulgary Odessa Kirta 94 78 98 1 14211 1 1970 19 10 1
+Germany Colorado Revolution 84 70 250 4 87655 0 0 
+USA Sochi Prospect 70 45 51 8 15222 0 0 
+Germany Belgorod Minskay 84 18 194 3 78497 1 1925 80 10 0
+USA Moscow Lity 39 10 290 9 28871 0 0 
+USA Honkong Colorars 47 46 227 3 17121 1 1959 5 1 0
+Germany Belgorod Prospect 69 78 209 7 17756 1 1949 66 3 0
+Russia London Revolution 48 88 135 5 23709 1 1971 75 9 0
+USA Belgorod Pushkina 32 82 111 10 43848 0 0 
+Japan London Pervaya 16 34 212 9 12817 1 1938 87 9 0
+Russia Moscow Prospect 31 3 91 8 17759 0 0 
+Russia Zavolzhye Kirta 69 80 219 2 90702 1 1933 39 6 0
+Britain Colorado Lenina 80 32 244 10 48475 1 1957 57 5 1
+Germany Honkong Lity 42 59 236 10 37617 1 1907 72 4 1
+Britain Colorado Kirta 45 75 191 6 74905 0 1 
+USA Chelyabinsk Prospect 56 72 43 6 4474 1 1973 20 6 0
+Australia London Colorars 46 52 277 8 1512 1 1934 43 4 1
+China Honkong Lenina 87 39 294 9 57741 0 1 
+Bulgary Minsk Colorars 30 15 61 7 50003 1 2016 91 4 0
+USA Chelyabinsk Pervaya 27 54 213 6 14074 0 0 
+Bulgary Colorado Revolution 1 84 101 5 21517 0 0 
+China Chelyabinsk Revolution 7 72 298 5 97139 1 2017 79 1 1
+Britain Belgorod Lenina 53 24 159 10 21346 1 2021 56 6 0
+Ukraine Odessa Revolution 40 14 86 1 65817 1 1984 36 4 1
+Belarus Humburg Pushkina 62 73 48 10 82888 1 1942 33 1 0
+Australia Chelyabinsk Lity 69 97 286 10 18082 1 1964 44 5 0
+Australia Minsk Prospect 41 4 215 5 84000 1 2010 45 7 1
+China Odessa Lenina 59 10 232 6 30194 1 1930 2 1 0
+Australia Moscow Heroes 84 2 290 5 46111 1 1971 25 9 0
+Britain Minsk Minskay 82 1 89 2 53053 0 0 
+Japan Belgorod Colorars 56 21 134 5 39107 1 1934 94 10 1
+Georgia Odessa Revolution 7 100 190 5 28951 1 1979 66 2 1
+Russia Odessa Lenina 11 62 214 6 80462 0 0 
+Ukraine Honkong Pervaya 45 53 289 1 64923 0 0 
+USA Zavolzhye Prospect 88 51 80 9 22410 0 0 
+Germany Humburg Kirta 71 99 77 10 43063 0 0 
+Bulgary Humburg Revolution 52 35 278 5 38736 0 1 
+Britain Odessa Colorars 19 22 89 10 1607 1 1935 98 3 1
+Britain Minsk Prospect 70 73 267 5 85349 0 1 
+Russia Belgorod Heroes 17 78 156 9 37095 0 1 
+Britain Chelyabinsk Lenina 87 22 80 10 11786 0 0 
+Russia London Minskay 3 89 63 9 9195 0 0 
+USA Minsk Lenina 16 99 67 2 40393 1 2007 64 10 0
+Germany London Lity 12 96 259 2 70099 1 1980 52 7 0
+China London Minskay 24 28 73 4 89526 1 1970 18 8 0
+Britain Moscow Revolution 49 42 160 1 80162 1 1951 52 3 0
+Bulgary Seul Prospect 7 19 200 8 95100 0 0 
+Ukraine Moscow Baumana 83 32 74 8 76199 0 0 
+Belarus Colorado Minskay 56 16 43 3 11831 1 1943 38 6 0
+Bulgary London Pervaya 52 62 31 10 23837 0 1 
+Japan Chelyabinsk Lenina 98 73 278 3 3003 1 1999 16 9 1
+China Honkong Heroes 67 57 44 9 30878 0 1 
+Australia Odessa Revolution 42 99 182 6 99017 1 1927 56 10 1
+Germany Humburg Baumana 66 31 40 2 3384 0 1 
+Australia Seul Colorars 13 20 184 5 86559 0 1 
+Russia Minsk Baumana 81 11 121 7 66344 1 1960 33 4 0
+Germany London Minskay 22 3 190 8 98123 1 1928 20 3 1
+Australia Seul Colorars 22 86 262 8 84618 0 0 
+Britain Belgorod Revolution 91 2 150 3 31306 0 1 
+Georgia Chelyabinsk Lenina 78 81 182 3 13474 0 1 
+Australia Seul Pushkina 45 98 150 1 41133 1 1984 13 5 0
+Australia Belgorod Baumana 73 75 57 3 22984 1 1903 26 8 0
+Belarus Chelyabinsk Revolution 56 60 36 6 77215 1 1997 53 6 0
+Japan London Revolution 58 37 80 3 5986 0 0 
+Belarus Odessa Lenina 23 26 203 1 83612 1 1920 48 1 0
+USA Moscow Heroes 20 44 249 9 88238 0 0 
+Germany Sochi Prospect 57 44 273 2 82210 1 1981 29 6 0
+Germany Zavolzhye Pervaya 5 26 229 10 31973 0 1 
+Georgia Chelyabinsk Colorars 29 99 276 10 10605 0 1 
+Britain Odessa Lity 50 49 107 2 39745 0 1 
+Bulgary Chelyabinsk Colorars 64 65 88 6 9817 0 1 
+Georgia Odessa Lity 35 4 74 3 83731 0 1 

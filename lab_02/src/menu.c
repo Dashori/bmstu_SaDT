@@ -13,7 +13,7 @@ int check_key(int key, struct flats *flat_arr, size_t *count, struct keys *key_a
         {
             int error = 0;
             print_rules_add();
-            if((error = add_flat(flat_arr, count, filename)))
+            if((error = add_flat(flat_arr, count, filename, key_arr)))
                 return error;
             printf("\nFlat successfully added.\n");
             break;
@@ -23,7 +23,7 @@ int check_key(int key, struct flats *flat_arr, size_t *count, struct keys *key_a
         {
             if (*count == 0)
             {
-                printf("\n You can't delete flat, because file is empty.\n");
+                printf("\nYou can't delete flat, because file is empty.\n");
                 break;
             }
             print_rules_del();
@@ -63,11 +63,13 @@ int check_key(int key, struct flats *flat_arr, size_t *count, struct keys *key_a
     case 8:
         sort_table(flat_arr, *count);
         print_table(flat_arr, *count);
+        read_table_key(flat_arr, key_arr, *count);
         break;
 
     case 9:
         qsort_table(flat_arr, *count);
         print_table(flat_arr, *count);
+        read_table_key(flat_arr, key_arr, *count);
         break;
 
     case 10:
@@ -76,7 +78,6 @@ int check_key(int key, struct flats *flat_arr, size_t *count, struct keys *key_a
         break;
 
     case 11:
-//        read_table_key(flat_arr, key_arr, *count);
         qsort_table_key(key_arr, *count);
         sort_table_with_key(flat_arr, *count, key_arr);
         break;
@@ -88,9 +89,7 @@ int check_key(int key, struct flats *flat_arr, size_t *count, struct keys *key_a
     default:
         printf("Error key, please, try again according the rules\n");
         return ERROR_KEY;
-
     }
 
     return EXIT_SUCCESS;
-
 }

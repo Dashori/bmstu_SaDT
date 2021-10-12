@@ -15,7 +15,7 @@
 #define ERROR_ADRESS 10
 #define ERROR_FLAT_PARAM 11
 
-int add_flat(struct flats *flat_arr, size_t *count, char *filename);
+int add_flat(struct flats *flat_arr, size_t *count, char *filename, struct keys *key_arr);
 int add_address(struct address_flat *new_address);
 int add_param_flat(struct flats *new_flat);
 int add_no_primary_flat(struct flats *new_flat);

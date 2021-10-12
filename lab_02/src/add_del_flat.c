@@ -14,7 +14,7 @@ int trim(char *s)
     return EXIT_SUCCESS;
 }
 
-int add_flat(struct flats *flat_arr, size_t *count, char *filename)
+int add_flat(struct flats *flat_arr, size_t *count, char *filename, struct keys *key_arr)
 {
     setbuf(stdout, NULL);
     if (*count == MAX_FLAT)
@@ -35,6 +35,7 @@ since there are 200 of them at most.");
     FILE *f = fopen(filename, "a");
     add_file(&flat_arr[n], f);
     fclose(f);
+    read_table_key(flat_arr, key_arr, *count);
 
     return EXIT_SUCCESS;
 }
@@ -127,16 +128,16 @@ int add_param_flat(struct flats *new_flat)
 
 void add_file(struct flats *flat_arr, FILE *f)
 {
-    fprintf(f, "%s %s %s %d %d %d %d %d ", flat_arr->address.country, flat_arr->address.city,
+    fprintf(f, "\n%s %s %s %d %d %d %d %d ", flat_arr->address.country, flat_arr->address.city,
     flat_arr->address.street, flat_arr->address.num_house, flat_arr->address.num_flat,
     flat_arr->square, flat_arr->room_number, flat_arr->cost_square_meter);
 
     if (flat_arr->is_primary)
-        fprintf(f, "%d %d %d %d %d\n",flat_arr->is_primary, flat_arr->primary.secondary.year,
+        fprintf(f, "%d %d %d %d %d",flat_arr->is_primary, flat_arr->primary.secondary.year,
     flat_arr->primary.secondary.all_owners, flat_arr->primary.secondary.count_last_owners,
     flat_arr->primary.secondary.animals);
     else
-        fprintf(f, "%d %d\n", flat_arr->is_primary, flat_arr->primary.is_fishing);
+        fprintf(f, "%d %d", flat_arr->is_primary, flat_arr->primary.is_fishing);
 }
 
 void del_file(struct flats *flat_arr, size_t count, char *filename)
