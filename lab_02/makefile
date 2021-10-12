@@ -5,7 +5,7 @@ INC = inc/
 CC := gcc
 CFLAGS := -std=c99 -Werror -Wall -Wextra -Wpedantic -Wfloat-equal -Wfloat-conversion -Iinc
 OBJS := $(OUT)add_del_flat.o $(OUT)find_flats.o $(OUT)menu.o $(OUT)print.o $(OUT)read_file.o $(OUT)sort_flats.o $(OUT)compare.o
-C := $(INC)add_del_flat.h $(INC)find_flats.h $(INC)menu.h $(INC)print.h $(INC)read_file.h $(INC)sort_flats.h $(INC)struct_flats.h $(INC)compare.h
+H := $(INC)add_del_flat.h $(INC)find_flats.h $(INC)menu.h $(INC)print.h $(INC)read_file.h $(INC)sort_flats.h $(INC)struct_flats.h $(INC)compare.h
  
 release: app.exe
 
@@ -39,7 +39,7 @@ $(OUT)sort_flats.o: $(SRC)sort_flats.c $(INC)sort_flats.h
 $(OUT)compare.o: $(SRC)compare.c $(INC)compare.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OUT)main.o : $(SRC)main.c  $(C)
+$(OUT)main.o : $(SRC)main.c  $(H)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 
