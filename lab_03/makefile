@@ -4,8 +4,8 @@ INC = inc/
 
 CC := gcc
 CFLAGS := -std=c99 -Werror -Wall -Wpedantic -Wextra -Wfloat-equal -Wfloat-conversion -Iinc
-OBJS := $(OUT)menu.o  $(OUT)input.o
-H :=  $(INC)menu.h $(INC)input.h
+OBJS := $(OUT)menu.o  $(OUT)input_mtr.o $(OUT)input_str.o $(OUT)actions.o $(OUT)structs.o
+H :=  $(INC)menu.h $(INC)input_mtr.h $(INC)input_str.h $(INC)actions.h  $(INC)structs.h
  
 release: app.exe
 
@@ -21,7 +21,16 @@ out:
 $(OUT)menu.o: $(SRC)menu.c $(INC)menu.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OUT)input.o: $(SRC)input.c $(INC)input.h
+$(OUT)input_mtr.o: $(SRC)input_mtr.c $(INC)input_mtr.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OUT)input_str.o: $(SRC)input_str.c $(INC)input_str.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OUT)actions.o: $(SRC)actions.c $(INC)actions.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OUT)structs.o: $(SRC)structs.c $(INC)structs.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OUT)main.o: $(SRC)main.c $(H)

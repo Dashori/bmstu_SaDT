@@ -1,62 +1,44 @@
 #include "menu.h"
-#include "input.h"
 
 int main(void)
 {
     setbuf(stdout, NULL);
     print_rules();
-    print_matrix_rules();
     int key;
-
-    printf("Вариант создания матрицы: ");
-    if(scanf("%d", &key) != 1 || key > 1 || key < 0) 
-    {   
-        printf("Неверный параметр выбора матрицы.\n");
-        return ERROR_KEY;
-    }
-
-    int n = 0, m = 0;
+    int flag = 1;
     int error_code = 0;
 
-    if((error_code = read_param(&n, &m)))
+    struct matrix_full mtr;
+    struct sparse_matrix mtr_spr;
+    struct str_matrix str;
+    struct sparse_matrix str_spr;
+    struct str_matrix res;
+    int flag_matrix = 0;
+    int flag_str = 0;
+
+
+    while(flag)
     {
-        printf("Неверно введены параметры матрицы.\n");
-        return error_code;
+        print_menu();
+        printf("Выберите пункт меню: ");
+        if(scanf("%d", &key) != 1 || key > 7 || key < 0) 
+        {   
+            printf("Неверный параметр меню.\n");
+            return ERROR_KEY;
+        }
+
+        if (key == 0)
+        {
+            printf("Программма успешно завершена по вашему желанию.\n");
+            return EXIT_SUCCESS;
+        }
+
+                
+        error_code = do_actions(key, &mtr, &mtr_spr, &str, &str_spr, &res, &flag_matrix, &flag_str);
+        if (error_code)
+            flag = 0;
+
     }
-    switch (key)
-    {
-        int **MTR;
-        int *A;
-        int *IA;
-        int *JA;
-    case(1):
-    {
-        int n_zero = 0;
-        error_code = input_non_zero(&n_zero, n, m);
-
-        if(!error_code)
-            error_code = read_matrix(&MTR, n, m, n_zero);
-        
-        if(!error_code) 
-            print_matrix(MTR, n, m);
-        else
-            return error_code;
-        
-        create_sparse(MTR, &A, &IA, &JA, n, m, n_zero);
-        // create_IA(MTR, IA, JA, n, m, n_zero);
-        
-        // free_matrix(MTR);
-
-        return error_code;
-    }
-
-    default:
-        break;
-    }
-    // read_matrix();
-    // print_vector();
-    
-
-
-    return EXIT_SUCCESS;
+ 
+    return error_code;
 }
