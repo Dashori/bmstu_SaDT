@@ -6,6 +6,10 @@
 
 struct sparse_matrix
 {
+    int str;
+    int col;
+    int n_zero;
+    
     int *A;
     int *IA;
     int *JA;

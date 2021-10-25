@@ -12,7 +12,7 @@
 
 int read_param_str(struct str_matrix *str_mtr);
 int read_element_str(struct str_matrix *str_mtr);
-int create_sparse_string(struct str_matrix *str_mtr, struct sparse_matrix *str_spr);
+int create_sparse_string(struct str_matrix str, struct sparse_matrix *str_spr);
 int create_rand_str(struct str_matrix *str_mtr);
 void print_str(struct str_matrix str_mtr);
 

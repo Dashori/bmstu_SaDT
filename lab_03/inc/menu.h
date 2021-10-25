@@ -13,8 +13,8 @@
 
 void print_rules(void);
 void print_menu(void);
-int do_actions(int key,struct matrix_full *mtr, struct sparse_matrix *mtr_spr, 
+int do_actions(int key, struct matrix_full *mtr, struct sparse_matrix *mtr_spr, 
 struct str_matrix *str, struct sparse_matrix *str_spr,
-struct str_matrix *res, int *flag_matrix, int *flag_str);
+struct str_matrix *res, struct sparse_matrix *res_spr, int *flag_matrix, int *flag_str);
 
 #endif

@@ -3,7 +3,7 @@ SRC = src/
 INC = inc/
 
 CC := gcc
-CFLAGS := -std=c99 -Werror -Wall -Wpedantic -Wextra -Wfloat-equal -Wfloat-conversion -Iinc
+CFLAGS := -std=c99 -Werror -Wextra -Wall -Wpedantic -Wfloat-equal -Wfloat-conversion -Iinc
 OBJS := $(OUT)menu.o  $(OUT)input_mtr.o $(OUT)input_str.o $(OUT)actions.o $(OUT)structs.o
 H :=  $(INC)menu.h $(INC)input_mtr.h $(INC)input_str.h $(INC)actions.h  $(INC)structs.h
  
@@ -13,7 +13,7 @@ debug : CFLAGS += -g3
 debug : app.exe
 
 app.exe: out $(OBJS) $(OUT)main.o
-	$(CC) -o $@ $(OBJS) $(OUT)main.o
+	$(CC) -o $@ $(OBJS) $(OUT)
 
 out:
 	mkdir out
@@ -41,4 +41,4 @@ $(OUT)main.o: $(SRC)main.c $(H)
 func:
 	sh make_func.sh
 clean:
-	$(RM) *.o *.exe -r out
+	$(RM) *.exe -r out
