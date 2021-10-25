@@ -10,6 +10,7 @@ int read_param(struct matrix_full *mtr)
         return ERROR_PARAM;
 
     printf("Введите количество столбцов матрицы(от 1 до 5000): ");
+
     if(scanf("%d", &mtr->m) != 1)
         return ERROR_READ;
 
@@ -112,7 +113,6 @@ void create_arrays(struct matrix_full mtr, struct sparse_matrix *mtr_spr)
 
 int create_sparse_matrix(struct matrix_full mtr, struct sparse_matrix *mtr_spr)
 {
-    printf("\nnon zero %d \n", mtr.n_zero);
     if ((mtr_spr->A = allocate_arr(mtr.n_zero)) == NULL)
         return ERROR_MEMORY;
     if ((mtr_spr->IA = allocate_arr(mtr.n_zero)) == NULL)

@@ -13,7 +13,7 @@ debug : CFLAGS += -g3
 debug : app.exe
 
 app.exe: out $(OBJS) $(OUT)main.o
-	$(CC) -o $@ $(OBJS) $(OUT)
+	$(CC) -o $@ $(OBJS) $(OUT)main.o
 
 out:
 	mkdir out

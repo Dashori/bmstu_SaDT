@@ -48,7 +48,7 @@ int read_param_str(struct str_matrix *str_mtr)
     }    
 
     printf("Введите количество ненулевых элементов в матрице-строк: ");
-    if(scanf("%d", &str_mtr->n_zero) != 1 || str_mtr->n_zero < 1
+    if(scanf("%d", &str_mtr->n_zero) != 1 || str_mtr->n_zero < 0
     || str_mtr->n_zero > str_mtr->n)
     {
         printf("Неверно введено количество ненулевых элементов матрицы-строки.\n");

@@ -29,10 +29,10 @@ void print_menu(void)
 
 int do_actions(int key, struct matrix_full *mtr, struct sparse_matrix *mtr_spr, 
 struct str_matrix *str, struct sparse_matrix *str_spr,
-struct str_matrix *res, struct sparse_matrix *res_spr, int *flag_matrix, int *flag_str)
+struct str_matrix *res, struct sparse_matrix *res_spr, int *flag_matrix, int *flag_str, 
+int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr)
 {
     int error_code = 0;
-
     switch (key)
     {
     case(1):
@@ -181,9 +181,6 @@ struct str_matrix *res, struct sparse_matrix *res_spr, int *flag_matrix, int *fl
     }
     case(7):
     {
-        // printf("%d %d\n", *flag_str, *flag_matrix);
-        // print_matrix(*mtr);
-
         if (!*flag_str)
         {
             printf("\nНевозможно выполнить умножение, так как не введена матрица-строка.\n\n");
@@ -206,9 +203,11 @@ struct str_matrix *res, struct sparse_matrix *res_spr, int *flag_matrix, int *fl
         res->n = mtr->m;
  
 
-        multiplicate_matrix(*str, *mtr, res);
+        multiplicate_matrix(*str, *mtr, res, res_time);
         printf("Результат умножения строки на матрицу: \n");
         print_str(*res);
+
+        (*flag_mult)++;
 
         break;
 
@@ -232,10 +231,6 @@ struct str_matrix *res, struct sparse_matrix *res_spr, int *flag_matrix, int *fl
             return ERROR_MULTI;
         }
 
-        if((res->mtr = calloc(mtr->m, sizeof(int))) == NULL)
-            return ERROR_MEMORY;
-        res->n = mtr->m;
-
         if ((res_spr->A = allocate_arr(mtr->n_zero)) == NULL)
             return ERROR_MEMORY;
         if ((res_spr->IA = allocate_arr(mtr->n_zero)) == NULL)
@@ -243,8 +238,17 @@ struct str_matrix *res, struct sparse_matrix *res_spr, int *flag_matrix, int *fl
         if ((res_spr->JA = allocate_arr(mtr->m + 1)) == NULL)
             return ERROR_MEMORY;
         
-        multiplicate_sparse(*str_spr, *mtr_spr, res_spr, res);
-        print_arr(res->mtr, res->n);
+        multiplicate_sparse(*str_spr, *mtr_spr, res_spr, res_time_spr);
+
+        printf("\nРезультат умножения строки на матрицу в разреженном виде: \n");
+        printf("A: ");
+        print_arr(res_spr->A, res_spr->col);
+        printf("IA: ");
+        print_arr(res_spr->IA, res_spr->col);
+        printf("JA: ");
+        print_arr(res_spr->JA, mtr->m + 1);
+
+        (*flag_mult_spr)++;
 
         break;
     }
