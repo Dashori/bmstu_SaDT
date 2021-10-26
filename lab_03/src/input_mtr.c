@@ -161,4 +161,3 @@ int create_rand_matrix(struct matrix_full *mtr_rand)
 
     return EXIT_SUCCESS;
 }
-
