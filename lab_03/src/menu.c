@@ -37,6 +37,9 @@ int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr, in
     {
     case(1):
     {
+        if (*flag_matrix)
+            free_matrix(mtr->mtr);
+
         if((error_code = read_param(mtr)))
         {
             printf("Неверно введены параметры матрицы.\n");
@@ -56,14 +59,13 @@ int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr, in
         
         (*flag_matrix)++;
         printf("\nМатрица успешно записана,\n\n");
-        double pr = (double)(mtr->n_zero / (mtr->m));
-        pr /= mtr->n;
-        pr *= 100;
-        printf("Процент заполненности ~ %.0lf%%\n", pr);
         break;
     }
     case(2):
     {
+        if (*flag_matrix)
+            free_matrix(mtr->mtr);
+
         if((error_code = read_param(mtr)))
         {
             printf("Неверно введены параметры матрицы.\n");
@@ -85,10 +87,6 @@ int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr, in
         (*flag_matrix)++;
 
         printf("\nМатрица успешно записана.\n\n");
-        double pr = (double)mtr->n_zero / ((double)(mtr->m));
-        pr /= mtr->n;
-        pr *= 100;
-        printf("Процент заполненности ~ %.0lf%%\n", pr);
         break;
     }
     case(3):
@@ -110,7 +108,7 @@ int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr, in
         }
         if (type == 1)
             print_matrix(*mtr);
-        else
+        else if (mtr_spr->n_zero != 0)
         {
             printf("A: ");
             print_arr(mtr_spr->A, mtr->n_zero);
@@ -119,11 +117,16 @@ int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr, in
             printf("JA: ");
             print_arr(mtr_spr->JA, mtr->m + 1);
         }
+        else if (mtr_spr->n_zero == 0)
+            printf("\nВведенная матрица нулевая.\n\n");
 
         break;
     }
     case(4):
     {
+        if(*flag_str)
+            free_arr(str->mtr);
+
         if(read_param_str(str))
             return ERROR_PARAM;
         
@@ -138,12 +141,13 @@ int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr, in
 
         (*flag_str)++;
         printf("\nМатрица-строка успешно записана.\n\n");
-        printf("Процент заполненности ~ %d%%\n", 100 * str->n_zero / ( str->n));
-        
         break;
     }
     case(5):
     {
+        if(*flag_str)
+            free_arr(str->mtr);
+            
         if(read_param_str(str))
             return ERROR_PARAM;
 
@@ -155,7 +159,6 @@ int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr, in
 
         (*flag_str)++;
         printf("\nМатрица-строка успешно записана.\n\n");
-        printf("Процент заполненности ~ %d%%\n", 100 * str->n_zero / ( str->n));
 
         break;
     }
@@ -178,7 +181,7 @@ int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr, in
         }
         if (type == 1)
             print_str(*str);
-        else
+        else if (str->n_zero != 0)
         {
             printf("A: ");
             print_arr(str_spr->A, str->n_zero);
@@ -187,6 +190,8 @@ int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr, in
             printf("JA: ");
             print_arr(str_spr->JA, str->n + 1);
         }
+        else if (str->n_zero == 0)
+            printf("\nПолученная строка нулевая.\n\n");
 
         break;
     }
@@ -271,7 +276,7 @@ int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr, in
             break;
         }
         if(res_spr->n_zero == 0)
-            printf("Полученная матрица - нулевая.\n");
+            printf("Полученная матрица - нулевая 1 x %d.\n", mtr->m);
         else
         {
             printf("\nРезультат умножения строки на матрицу в разреженном виде: \n");

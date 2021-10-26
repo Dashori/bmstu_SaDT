@@ -37,6 +37,16 @@ int main(void)
 
         if (key == 0)
         {
+            if (flag_str)
+            {
+                free_arr(mtr_spr.IA);
+                free_arr(mtr_spr.JA);
+                free_arr(mtr_spr.A);
+            }
+            if (flag_matrix)
+            {
+                free_matrix(mtr.mtr);
+            }
             printf("Программма успешно завершена по вашему желанию.\n");
             return EXIT_SUCCESS;
         }

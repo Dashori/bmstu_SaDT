@@ -3,7 +3,6 @@
 void multiplicate_matrix(struct str_matrix str, struct matrix_full mtr, struct str_matrix *res, clock_t *res_time)
 {
     clock_t start, end;
-    // clock_t *res_time = 0;
     start = clock();
     for (int k = 0; k < mtr.m; k++)
     {
