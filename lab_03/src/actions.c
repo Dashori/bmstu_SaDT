@@ -14,7 +14,6 @@ void multiplicate_matrix(struct str_matrix str, struct matrix_full mtr, struct s
     }
     end = clock();
     *res_time = (end - start);
-    printf("time : %ld \n", *res_time);
 }
 
 void multiplicate_sparse(struct sparse_matrix str, struct sparse_matrix mtr, struct sparse_matrix *res_sparse, clock_t *res_time)
@@ -28,7 +27,7 @@ void multiplicate_sparse(struct sparse_matrix str, struct sparse_matrix mtr, str
     int flag = 0;
 
     clock_t start, end;
-    // clock_t *res_time = 0;
+
     start = clock();
 
     for(int i = 0; i < mtr.col; i++)
@@ -40,6 +39,7 @@ void multiplicate_sparse(struct sparse_matrix str, struct sparse_matrix mtr, str
             {
                 res_sparse->A[res_sparse->col] += str.A[str.JA[mtr.IA[j]]] * mtr.A[j];
                 flag = 1;
+                res_sparse->n_zero++;
             }
         }
         if (flag)
@@ -54,7 +54,5 @@ void multiplicate_sparse(struct sparse_matrix str, struct sparse_matrix mtr, str
     }
     end = clock();
     *res_time = (end - start);
-    printf("time : %ld \n", *res_time);
-
 }
 

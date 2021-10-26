@@ -30,7 +30,7 @@ void print_menu(void)
 int do_actions(int key, struct matrix_full *mtr, struct sparse_matrix *mtr_spr, 
 struct str_matrix *str, struct sparse_matrix *str_spr,
 struct str_matrix *res, struct sparse_matrix *res_spr, int *flag_matrix, int *flag_str, 
-int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr)
+int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr, int flag_compare)
 {
     int error_code = 0;
     switch (key)
@@ -56,6 +56,10 @@ int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr)
         
         (*flag_matrix)++;
         printf("\nМатрица успешно записана,\n\n");
+        double pr = (double)(mtr->n_zero / (mtr->m));
+        pr /= mtr->n;
+        pr *= 100;
+        printf("Процент заполненности ~ %.0lf%%\n", pr);
         break;
     }
     case(2):
@@ -79,7 +83,12 @@ int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr)
             return error_code;
 
         (*flag_matrix)++;
+
         printf("\nМатрица успешно записана.\n\n");
+        double pr = (double)mtr->n_zero / ((double)(mtr->m));
+        pr /= mtr->n;
+        pr *= 100;
+        printf("Процент заполненности ~ %.0lf%%\n", pr);
         break;
     }
     case(3):
@@ -129,6 +138,7 @@ int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr)
 
         (*flag_str)++;
         printf("\nМатрица-строка успешно записана.\n\n");
+        printf("Процент заполненности ~ %d%%\n", 100 * str->n_zero / ( str->n));
         
         break;
     }
@@ -145,6 +155,7 @@ int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr)
 
         (*flag_str)++;
         printf("\nМатрица-строка успешно записана.\n\n");
+        printf("Процент заполненности ~ %d%%\n", 100 * str->n_zero / ( str->n));
 
         break;
     }
@@ -204,10 +215,20 @@ int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr)
  
 
         multiplicate_matrix(*str, *mtr, res, res_time);
+
+        if(flag_compare)
+        {
+            printf("\nВремя при обычном хранении(тактов): %ld\n", *res_time);
+            int mem = sizeof(int) * (mtr->n * mtr->m) + sizeof(int*) * mtr->n;
+            mem += sizeof(int) * (str->n); 
+            printf("Память при обычном хранении(байт): %d\n", mem);
+            break;
+        }
+        
         printf("Результат умножения строки на матрицу: \n");
         print_str(*res);
-
-        (*flag_mult)++;
+        
+        (*flag_mult)++;        
 
         break;
 
@@ -237,17 +258,30 @@ int *flag_mult, int *flag_mult_spr, clock_t *res_time, clock_t *res_time_spr)
             return ERROR_MEMORY;
         if ((res_spr->JA = allocate_arr(mtr->m + 1)) == NULL)
             return ERROR_MEMORY;
-        
+        res_spr->n_zero = 0;
+
         multiplicate_sparse(*str_spr, *mtr_spr, res_spr, res_time_spr);
-
-        printf("\nРезультат умножения строки на матрицу в разреженном виде: \n");
-        printf("A: ");
-        print_arr(res_spr->A, res_spr->col);
-        printf("IA: ");
-        print_arr(res_spr->IA, res_spr->col);
-        printf("JA: ");
-        print_arr(res_spr->JA, mtr->m + 1);
-
+        
+        if(flag_compare)
+        {
+            printf("\nВремя при разреженном хранении(тактов): %ld\n", *res_time_spr);
+            int mem = sizeof(int) * (mtr->n_zero * 2 + mtr->m + 1);
+            mem += sizeof(int) * (2 *str_spr->n_zero + str_spr->col); 
+            printf("Память при разреженном хранении(байт): %d\n\n", mem);
+            break;
+        }
+        if(res_spr->n_zero == 0)
+            printf("Полученная матрица - нулевая.\n");
+        else
+        {
+            printf("\nРезультат умножения строки на матрицу в разреженном виде: \n");
+            printf("A: ");
+            print_arr(res_spr->A, res_spr->col);
+            printf("IA: ");
+            print_arr(res_spr->IA, res_spr->col);
+            printf("JA: ");
+            print_arr(res_spr->JA, mtr->m + 1);
+        }
         (*flag_mult_spr)++;
 
         break;
