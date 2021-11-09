@@ -139,27 +139,13 @@ int analysis(void)
     printf("%*ld | %*ld | %*ld |\n", 20, res_l, 20, res_r, 6, res_list);
 
 
-    size_t arr_n = n * sizeof(double);
+    size_t arr_n = n * sizeof(double) + n * sizeof(int) * 3;
     size_t list_n = n * sizeof(struct list_element);
     printf("\nПамять для %d элементов в байтах:\n", n);
     printf("Массив  |  Список |\n");
     printf("--------|---------|\n");
     printf("%*zu  |  %*zu |\n\n", 6, arr_n, 6, list_n);
 
-    // size_t arr_10 = 10 * sizeof(double);
-    // size_t list_10 = 10 * sizeof(struct list_element);
-    // printf("\nПамять для 10 элементов в байтах:\n");
-    // printf("Массив  |  Список |\n");
-    // printf("--------|---------|\n");
-    // printf("%*zu  |  %*zu |\n", 6, arr_10, 6, list_10);
-    // printf("\nПамять для 100 элементов в байтах:\n");
-    // printf("Массив  |  Список |\n");
-    // printf("--------|---------|\n");
-    // printf("%*zu  |  %*zu |\n", 6, 10 * arr_10, 6, 10 * list_10);
-    // printf("\nПамять для 1000 элементов в байтах:\n");
-    // printf("Массив  |  Список |\n");
-    // printf("--------|---------|\n");
-    // printf("%*zu  |  %*zu |\n\n", 6, 100 * arr_10, 6, 100 * list_10);
     
     return EXIT_SUCCESS;
 }
