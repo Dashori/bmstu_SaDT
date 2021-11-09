@@ -2,6 +2,7 @@
 #include "structs.h"
 #include "add_del_arr.h"
 #include "add_del_list.h"
+#include "analysis.h"
 
 int main(void)
 {
@@ -23,7 +24,7 @@ int main(void)
     while(flag)
     {
         menu();
-        if (scanf("%d", &key) != 1 || key < 0 || key > 9)
+        if (scanf("%d", &key) != 1 || key < 0 || key > 10)
         {
             printf("Введён неверный ключ.\n");
             return ERROR_KEY;
@@ -78,6 +79,11 @@ int main(void)
             print_info_arr(array);
             break;
         case(6):
+            if (list.element->count == MAX_SIZE)
+            {
+                printf("Невозможно добавить элемент в стек, так как он переполнен.\n");
+                break;
+            }
             if ((error_code = allocate_el_list(&list)))
                 return error_code;
             break;
@@ -98,7 +104,10 @@ int main(void)
                 printf("\nНевозможно вывести массив свободных ячеек, так как он пуст.\n\n");
             else
                 print_free_list(free_cells, len_array);
-            
+            break;
+        case(10):
+            if ((error_code = analysis()))
+                return error_code;
             break;
         default:
             break;

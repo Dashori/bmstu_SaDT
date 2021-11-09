@@ -4,7 +4,6 @@
 #define ERROR_SIZE 2
 #define ERROR_MEMORY 3
 
-
 #define MAX_SIZE 5000
 #define MIN_SIZE 1
 
@@ -16,7 +15,7 @@ struct arr_stack
     int size_arr; //размер массива
     int cur_size; //количество свободных элементов в массиве
     int count_left; //последний элемент в левом стеке
-    int count_right; //последний элемен в правом стеке
+    int count_right; //последний элемент в правом стеке
     double *arr; //массив с правым и левом стеке
 };
 

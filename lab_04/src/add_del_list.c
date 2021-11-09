@@ -40,8 +40,6 @@ void pop_list_element(struct list_stack *list, double *array[50], size_t *len_ar
 {
     printf("Удаление элемента: %lf\n", list->element->elem);
     array[*len_array] = &list->element->elem; 
-    // printf(" %p ", (list->element->;
-    // printf(" %p ", (void*)array[*len_array]);
     (*len_array)++;
     struct list_element *temp = list->element->next;
 
@@ -49,7 +47,6 @@ void pop_list_element(struct list_stack *list, double *array[50], size_t *len_ar
     {
         free(list->element);
         list->element = temp;
-        printf(" count = %d\n", list->element->count);
     }
     else
         list->element->count = 0;   

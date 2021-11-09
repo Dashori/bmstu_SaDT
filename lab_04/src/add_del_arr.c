@@ -1,6 +1,5 @@
 #include "add_del_arr.h"
 
-
 int add_left(struct arr_stack *array)
 {
     printf("Введите элемент левого стека(осталось %d мест): ", array->cur_size);
