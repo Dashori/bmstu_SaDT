@@ -34,7 +34,7 @@ unsigned long simulate_service(struct mem_slot **mem, int *mem_used)
     time = tick() - time - t_buf2;
     double model = 0;
 
-    if ((COMING_END + COMING_START) > (PROCESSING_END + PROCESSING_START))
+    if ((COMING_END + COMING_START) < (PROCESSING_END + PROCESSING_START))
         model = (double)(COMING_END + COMING_START) / 2 * TOTAL_NEED;
     else
         model = (double)(PROCESSING_END + PROCESSING_START) / 2 * TOTAL_NEED * (1 / 0.2);
