@@ -10,7 +10,7 @@
 #define COMING_START 0
 #define COMING_END 6
 #define PROCESSING_START 0
-#define PROCESSING_END 2
+#define PROCESSING_END 1
 
 struct queue_slot
 {
