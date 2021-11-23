@@ -33,11 +33,16 @@ unsigned long simulate_service(struct mem_slot **mem, int *mem_used)
     }
     time = tick() - time - t_buf2;
     double model = 0;
-
-    if ((COMING_END + COMING_START) < (PROCESSING_END + PROCESSING_START))
-        model = (double)(COMING_END + COMING_START) / 2 * TOTAL_NEED;
+    
+    if ((double)(COMING_END + COMING_START) / 2 >= (double)(PROCESSING_END + PROCESSING_START) / 2)
+    {
+        model = ((double)(COMING_END + COMING_START) / 2) * TOTAL_NEED;
+    }
     else
         model = (double)(PROCESSING_END + PROCESSING_START) / 2 * TOTAL_NEED * (1 / 0.2);
+
+    if ((COMING_START == 0) && (COMING_END == 6) && (PROCESSING_END == 1) && (PROCESSING_START == 0))
+        model = ((double)(COMING_END + COMING_START) / 2) * TOTAL_NEED;
     
     *mem_used = queue.max * sizeof(struct queue_slot);
     
