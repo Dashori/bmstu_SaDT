@@ -47,6 +47,7 @@ unsigned long simulate_service_arr(int *mem_used)
             model = ((double)(COMING_END + COMING_START) / 2) * TOTAL_NEED;
         else
             model = ((double)(PROCESSING_END + PROCESSING_START) / 2) * TOTAL_NEED * (1 / 0.2);
+            
         if ((COMING_START == 0) && (COMING_END == 6) && (PROCESSING_END == 1) && (PROCESSING_START == 0))
             model = ((double)(COMING_END + COMING_START) / 2) * TOTAL_NEED;
      

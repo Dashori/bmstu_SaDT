@@ -34,12 +34,13 @@ unsigned long simulate_service(struct mem_slot **mem, int *mem_used)
     time = tick() - time - t_buf2;
     double model = 0;
     
-    if ((double)(COMING_END + COMING_START) / 2 >= (double)(PROCESSING_END + PROCESSING_START) / 2)
+    if ((double)(COMING_END + COMING_START) / 2 > (double)(PROCESSING_END + PROCESSING_START) / 2)
     {
-        model = ((double)(COMING_END + COMING_START) / 2) * TOTAL_NEED;
+        model = (double)(PROCESSING_END + PROCESSING_START) / 2 * TOTAL_NEED * (1 / 0.2);
+
     }
     else
-        model = (double)(PROCESSING_END + PROCESSING_START) / 2 * TOTAL_NEED * (1 / 0.2);
+        model = ((double)(COMING_END + COMING_START) / 2) * TOTAL_NEED;        
 
     if ((COMING_START == 0) && (COMING_END == 6) && (PROCESSING_END == 1) && (PROCESSING_START == 0))
         model = ((double)(COMING_END + COMING_START) / 2) * TOTAL_NEED;
