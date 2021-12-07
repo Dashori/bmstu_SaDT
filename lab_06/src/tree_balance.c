@@ -95,6 +95,7 @@ tree_node_t *copy(tree_node_t *root)
 tree_node_t *insert_balance(tree_node_t *tree, tree_node_t *node) 
 {
 	int rotate = 0;
+
 	if (tree == NULL)
         return node;
 
@@ -109,7 +110,7 @@ tree_node_t *insert_balance(tree_node_t *tree, tree_node_t *node)
         tree->right = insert_balance(tree->right, node);
 
     // return tree;
-	return  balance(tree, &rotate);
+	return balance(tree, &rotate);
 }
 
 int insert_in_tree(tree_node_t **tree, tree_node_t **balance_tree)

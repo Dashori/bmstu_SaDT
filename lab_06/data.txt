@@ -1,7 +1,4 @@
-cat
-ananas
+apple
+bird
 dog
-cats
-mouse
-snake
 fish
