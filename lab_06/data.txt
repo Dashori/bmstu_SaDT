@@ -1,0 +1,7 @@
+cat
+ananas
+dog
+cats
+mouse
+snake
+fish
