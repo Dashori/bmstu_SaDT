@@ -1,6 +1,7 @@
 #include "print.h"
 #include "tree_func.h"
 #include "tree_balance.h"
+#include "hash_func.h"
 #include "exceptions.h"
 
 int main(void)
@@ -11,7 +12,8 @@ int main(void)
     tree_node_t *root_balance = NULL;
 
     int key = 1, error_code = 0;
-    char filename[] = "data.txt";
+    int flag_file = 1;
+    char filename[20] = "";
     char filename_dot[] = "tree.gv";
     char filename_dot_balance[] = "balance_tree.gv";
 
@@ -32,6 +34,12 @@ int main(void)
             }
             case(1):
             {
+                if (flag_file)
+                {
+                    read_filename(filename);
+                    flag_file = 0;
+                }
+
                 if ((error_code = read_tree(filename, &root)))
                     return error_code;
                 
@@ -66,7 +74,7 @@ int main(void)
                     break;
                 }
 
-                if ((error_code = insert_in_tree(&root, &root_balance)))
+                if ((error_code = insert_in_tree(&root, &root_balance, filename)))
                     return error_code;
 
                 break;
@@ -81,7 +89,7 @@ int main(void)
 
                 btree_export_to_dot(filename_dot, "tree", root);
                 system("dot -Tpng tree.gv -otree.png");
-                system("code tree.png");
+                system("xdg-open tree.png");
                 
                 break;
             }
@@ -96,13 +104,18 @@ int main(void)
 
                 btree_export_to_dot(filename_dot_balance, "balance_tree", root_balance);
                 system("dot -Tpng balance_tree.gv -obalance_tree.png");
-                system("code balance_tree.png");
+                system("xdg-open balance_tree.png");
                 
                 break;
             }
             case(6):
             {
-                
+                if (flag_file)
+                {
+                    read_filename(filename);
+                    flag_file = 0;
+                }
+                break;
             } 
             default:
                 return error_code;

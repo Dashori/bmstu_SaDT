@@ -3,10 +3,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "exceptions.h"
 
-int create_hash(void);
+int read_filename(char filename[]);
 
 
 #endif

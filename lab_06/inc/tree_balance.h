@@ -9,7 +9,7 @@
 tree_node_t *copy(tree_node_t *root);
 tree_node_t *balance(tree_node_t *node, int *rotate);
 tree_node_t *btree_balance_post(tree_node_t *tree, ptr_action_2_t f, int *rotate);
-int insert_in_tree(tree_node_t **tree, tree_node_t **balance_tree);
+int insert_in_tree(tree_node_t **tree, tree_node_t **balance_tree, char *filename);
 tree_node_t *insert_balance(tree_node_t *tree, tree_node_t *node) ;
 
 #endif

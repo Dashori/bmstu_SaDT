@@ -111,12 +111,27 @@ tree_node_t *insert_balance(tree_node_t *tree, tree_node_t *node)
 
     // return tree;
 	return balance(tree, &rotate);
-}
+} 
 
-int insert_in_tree(tree_node_t **tree, tree_node_t **balance_tree)
+int insert_in_file(char *filename)
+{
+	FILE *f = fopen(filename, "a");
+	if (!f)
+	{
+		printf("\nОшибка. Невозможно открыть файл %s.\n", filename);
+		return ERROR_FILE;
+	}
+
+	
+
+}
+int insert_in_tree(tree_node_t **tree, tree_node_t **balance_tree, char *filename)
 {
     char str[255];
     printf("\nВведите слово для вставки в дерево: ");
+
+	clock_t start, end;
+    clock_t start_balance, end_balance;
 
     if (scanf("%s", str))
     {
@@ -127,16 +142,29 @@ int insert_in_tree(tree_node_t **tree, tree_node_t **balance_tree)
         if (!node)
             return ERROR_WITH_MEMORY;
 
+		start = clock();
         *tree = insert(*tree, node);
+		end = clock();
+
         if (*balance_tree != NULL)
+		{
+			start_balance = clock();
 			*balance_tree = insert_balance(*balance_tree, node_2);
+			end_balance = clock();
+		}
 		else
-			printf("Слово добавлено только в исходное дерево, так как сбаласированное не создано.\n\n");          
+			printf("Слово добавлено только в исходное дерево, так как сбаласированное не создано.\n\n");
+
+
+
+		printf("\nВремя добавления в исходное дерево(в тактах): %ld\n", end - start);	
+		printf("Время добавления в балансированное дерево(в тактах): %ld\n\n", end_balance - start_balance);
+
     }
     else
     {
         printf("\nОшибка.Неверно введено слово.\n");
-        return EXIT_FAILURE;
+        return ERROR_STRING;
     }
 
     return EXIT_SUCCESS;
