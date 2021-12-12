@@ -1,8 +1,5 @@
 #include "print.h"
-#include "tree_func.h"
-#include "tree_balance.h"
-#include "hash_func.h"
-#include "exceptions.h"
+#include "compare_structs.h"
 
 int main(void)
 {
@@ -43,6 +40,12 @@ int main(void)
                     flag_file = 0;
                 }
 
+                if (root != NULL)
+                {
+                    printf("\nДерево уже считано из файла.\nЧтобы считать другое надо занаво запустить программу.\n\n");
+                    break;
+                }
+
                 if ((error_code = read_tree(filename, &root)))
                     return error_code;
                 
@@ -73,27 +76,6 @@ int main(void)
             {
                 if (root == NULL)
                 {
-                    printf("\nДля вставки ногово слова необходимо выполнить пункт 1.\n\n");
-                    break;
-                }
-
-                if (max_size <= cur_size)
-                {
-                    printf("\nНевозможно добавить элемент в структуры, так как они полностью заполнены.\n\n");
-                    break;
-                }
-
-                if ((error_code = insert_in_tree(&root, &root_balance, filename)))
-                    return error_code;
-                
-                cur_size++;
-
-                break;
-            }
-            case(4):
-            {
-                if (root == NULL)
-                {
                     printf("\nДля вывода дерева необходимо его считать в пункте 1.\n\n");
                     break;                    
                 }
@@ -104,7 +86,7 @@ int main(void)
                 
                 break;
             }
-            case(5):
+            case(4):
             {
                 if (root_balance == NULL)
                 {
@@ -119,7 +101,7 @@ int main(void)
                 
                 break;
             }
-            case(6):
+            case(5):
             {
                 if (flag_file)
                 {
@@ -127,8 +109,15 @@ int main(void)
                         return error_code;
                     flag_file = 0;
                 }
-                table = malloc(sizeof(hash_table_t));
-                table->array = malloc(max_size * sizeof(node_table_t));
+
+                if (table != NULL)
+                {
+                    printf("\nТаблица уже считана из файла.\nЧтобы считать другую надо занаво запустить программу.\n\n");
+                    break;
+                }
+                
+                table = calloc(1,sizeof(hash_table_t));
+                table->array = calloc(max_size , sizeof(node_table_t));
 
                 if (!(table->array))
                     return ERROR_WITH_MEMORY;
@@ -137,17 +126,44 @@ int main(void)
                 table->max_size = max_size;
 
                 create_hash(filename, &table);
+
+                printf("\nХэш-таблица успешно создана.\n\n");
                 
                 break;
             } 
-            case(7):
+            case(6):
             {
                 if (table != NULL)
                 {
-                    print_hash(table, cur_size);
+                    hash_table_t temp = *table;
+                    print_hash(temp, max_size);
                 }
+                else
+                    printf("\nСчитайте хэш-таблицу из файла в пункте 5.\n\n");
                 break;
             }
+            case(7):
+            {
+                if (root == NULL || root_balance == NULL || table == NULL)
+                {
+                    printf("\nДля вставки ногово слова необходимо выполнить пункты 1, 2, 5.\n\n");
+                    break;
+                }
+
+                if (max_size <= cur_size)
+                {
+                    printf("\nНевозможно добавить элемент в структуры, так как они полностью заполнены.\n\n");
+                    break;
+                }
+
+                if ((error_code = insert_in_tree(&root, &root_balance, filename, table)))
+                    return error_code;
+                
+                cur_size++;
+
+                break;
+            }
+            
             default:
                 return error_code;
         }

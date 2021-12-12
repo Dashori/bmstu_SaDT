@@ -14,45 +14,6 @@ tree_node_t *create_node(const char *name_node)
     return node;
 }
 
-tree_node_t *insert(tree_node_t *tree, tree_node_t *node, int *i)
-{
-    if (tree == NULL)
-        return node;
-
-    int cmp = strcmp(node->name, tree->name);
-
-    if (cmp == 0)
-        printf("\nДанное слово не может быть добавлено, так как уже есть в дереве.\n\n");
-
-    if (cmp < 0)
-    {
-        tree->left = insert(tree->left, node, i);
-        (*i)++;
-    }
-    else if (cmp > 0)
-    {
-        tree->right = insert(tree->right, node, i);
-        (*i)++;
-    }
-
-    return tree;
-}
-
-tree_node_t *btree_lookup(tree_node_t *tree, const char *name)
-{
-    int cmp;
-
-    if (tree == NULL)
-        return NULL;
-
-    cmp = strcmp(name, tree->name);
-    if (cmp == 0)
-        return tree;
-    else if (cmp < 0)
-        return btree_lookup(tree->left, name);
-    else
-        return btree_lookup(tree->right, name);
-}
 
 void node_print(tree_node_t *node, void *param)
 {

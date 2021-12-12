@@ -23,18 +23,18 @@ void itoa(int n, char s[])
 
 int read_filename(char *filename, int *max_size, int *cur_size)
 {
-    printf("Введите максимальный размер для структур(от 1 до 250): ");
-    if (scanf("%d", max_size) != 1 || *max_size > 250 || *max_size < 1)
+    printf("Введите максимальный размер для структур(от 2 до 250): ");
+    if (scanf("%d", max_size) != 1 || *max_size > 250 || *max_size < 2)
     {
-        printf("\nНеверный размер хэш-таблицы.\n\n");
+        printf("\nНеверный размер.\n\n");
         return ERROR_SIZE;
     }
 
-    printf("Введите размер текущей хэш-таблицы и дерева(от 1 до 250): ");
+    printf("Введите размер текущей хэш-таблицы и дерева(от 2 до 250): ");
 
-    if (scanf("%d", cur_size) != 1 || *cur_size > *max_size || *cur_size < 1)
+    if (scanf("%d", cur_size) != 1 || *cur_size > *max_size || *cur_size < 2)
     {
-        printf("\nНеверный размер хэш-таблицы.\n\n");
+        printf("\nНеверный размер.\n\n");
         return ERROR_SIZE;
     }
 
@@ -55,32 +55,64 @@ int read_filename(char *filename, int *max_size, int *cur_size)
     return EXIT_SUCCESS;
 }
 
-// unsigned long hash_func(char *leaf, struct tree *tree, int *compare)
-// {
+node_table_t *create_node_table(char *name)
+{
+    node_table_t *temp = calloc(1, sizeof(node_table_t));
+    
+    if (!temp)
+        return NULL;
+    
+    temp->name = name;
+    temp->next = NULL;
+    
+    return temp;
+}
 
-//     int sum = 0;
-//     for (int i = 0; i < (int)strlen(leaf); i++)
-//     {
-//         sum += leaf[i]^tree->rand[i];
-//     }
-//     int ind = sum % tree->hash_size;
-//     struct hash_slot *buf = malloc(sizeof(struct hash_slot));
-//     strcpy(buf->value, leaf);
-//     if (tree->hash_table[ind] == NULL)
-//     {
-//         buf->next = NULL;
-//         tree->hash_table[ind] = buf;
-//     }
-//     else
-//     {
-//         buf->next = tree->hash_table[ind];
-//         tree->hash_table[ind] = buf;
-//     }
-//     (*compare)++;
+node_table_t *list_add_end(node_table_t *node, node_table_t *list, int *compare)
+{
+    if (!list)
+        return node;
 
-//     return t;
-// }
+    node_table_t *temp = list;
 
+    for (temp = list; temp->next != NULL; temp = temp->next, (*compare)++)
+    {
+        (*compare)++;
+        int cmp = strcmp(node->name, temp->name);
+        if (cmp == 0)
+        {
+            printf("\nДанное слово уже есть в хэш-таблице и не может быть добавлено.\n\n");
+            return list;
+        }
+        printf("AAA %d %d", (*compare), cmp);
+    }
+    temp->next = node;
+
+    return list;
+}
+
+int hash_func(char *name, int max_size)
+{
+    int sum = 0;
+
+    for (int i = 0; i < (int)strlen(name); i++)
+        sum += name[i]^(rand() % max_size);
+    
+    return sum % max_size;
+}
+
+void insert_hash_node(char *name, hash_table_t *table, int *compare)
+{
+    int res = hash_func(name, table->max_size);
+
+    if (table->array[res].name == NULL)
+        table->array[res].name = name;
+    else
+    {
+        node_table_t *new_node = create_node_table(name);
+        table->array[res].next = list_add_end(new_node, table->array[res].next, compare);
+    }
+}
 
 int create_hash(char *filename, hash_table_t **table)
 {
@@ -92,15 +124,15 @@ int create_hash(char *filename, hash_table_t **table)
     }
     char str[255];
     int count = 0;
-    
+    int compare = 0;
+
     while (fgets(str, 255, f))
     { 
         str[strlen(str) - 1] = '\0';
         char *name = strdup(str);
-        (*table)->array[count].name = name;
+        insert_hash_node(name, *table, &compare);
         count++;
     }
-
     fclose(f);
 
     if (!count)
@@ -115,8 +147,27 @@ int create_hash(char *filename, hash_table_t **table)
     return EXIT_SUCCESS;
 }
 
-void print_hash(hash_table_t *table, int cur_size)
+void print_list(node_table_t head)
 {
-    for (int i = 0; i < cur_size; i++)
-        printf("%s \n", table->array[i].name);
+    node_table_t temp = head;
+    while (temp.next)
+    {
+        printf("%s ", temp.next->name);
+        temp.next = temp.next->next;
+    }
+}
+
+void print_hash(hash_table_t table, int max_size)
+{
+    printf("\n");
+    for (int i = 0; i < max_size; i++)
+    {
+        printf("%d: ", i);
+        if (table.array[i].name != NULL)
+            printf("%s ", table.array[i].name);
+        if (table.array[i].next != NULL)
+            print_list(table.array[i]);
+        printf("\n");
+    }
+    printf("\n");
 }

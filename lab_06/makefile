@@ -4,8 +4,8 @@ INC = inc/
 
 CC := gcc
 CFLAGS := -std=c99 -Werror -Wextra -Wall -Wpedantic -Wfloat-equal -Wfloat-conversion -Iinc
-OBJS := $(OUT)print.o $(OUT)tree_func.o $(OUT)tree_balance.o $(OUT)hash_func.o
-H :=  $(INC)print.h $(INC)exceptions.h $(INC)tree_func.h $(INC)tree_balance.h $(INC)hash_func.h  
+OBJS := $(OUT)print.o $(OUT)tree_func.o $(OUT)tree_balance.o $(OUT)hash_func.o $(OUT)compare_structs.o
+H :=  $(INC)print.h $(INC)exceptions.h $(INC)tree_func.h $(INC)tree_balance.h $(INC)hash_func.h $(INC)compare_structs.h  
  
 release: app.exe
 
@@ -25,6 +25,9 @@ $(OUT)tree_balance.o: $(SRC)tree_balance.c $(INC)tree_balance.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OUT)hash_func.o: $(SRC)hash_func.c $(INC)hash_func.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OUT)compare_structs.o: $(SRC)compare_structs.c $(INC)compare_structs.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OUT)main.o: $(SRC)main.c $(H)
