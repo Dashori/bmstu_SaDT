@@ -14,7 +14,7 @@ tree_node_t *create_node(const char *name_node)
     return node;
 }
 
-tree_node_t *insert(tree_node_t*tree, tree_node_t *node)
+tree_node_t *insert(tree_node_t *tree, tree_node_t *node, int *i)
 {
     if (tree == NULL)
         return node;
@@ -25,9 +25,15 @@ tree_node_t *insert(tree_node_t*tree, tree_node_t *node)
         printf("\nДанное слово не может быть добавлено, так как уже есть в дереве.\n\n");
 
     if (cmp < 0)
-        tree->left = insert(tree->left, node);
+    {
+        tree->left = insert(tree->left, node, i);
+        (*i)++;
+    }
     else if (cmp > 0)
-        tree->right = insert(tree->right, node);
+    {
+        tree->right = insert(tree->right, node, i);
+        (*i)++;
+    }
 
     return tree;
 }
@@ -82,8 +88,9 @@ int read_tree(char *filename, tree_node_t **root)
             fclose(f);
             return ERROR_WITH_MEMORY;
         }
+        int i = 0;
 
-        *root = insert(*root, node);
+        *root = insert(*root, node, &i);
     }
 
     fclose(f);

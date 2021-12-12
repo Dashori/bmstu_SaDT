@@ -92,7 +92,7 @@ tree_node_t *copy(tree_node_t *root)
     return new_root;
 }
 
-tree_node_t *insert_balance(tree_node_t *tree, tree_node_t *node) 
+tree_node_t *insert_balance(tree_node_t *tree, tree_node_t *node, int *i) 
 {
 	int rotate = 0;
 
@@ -105,26 +105,61 @@ tree_node_t *insert_balance(tree_node_t *tree, tree_node_t *node)
         printf("\nДанное слово не может быть добавлено, так как уже есть в дереве.\n\n");
 
     if (cmp < 0)
-        tree->left = insert_balance(tree->left, node);
+	{
+		(*i)++;
+        tree->left = insert_balance(tree->left, node, i);
+	}
     else if (cmp > 0)
-        tree->right = insert_balance(tree->right, node);
+	{
+        tree->right = insert_balance(tree->right, node, i);
+		(*i)++;
+	}
 
     // return tree;
 	return balance(tree, &rotate);
 } 
 
-int insert_in_file(char *filename)
+int insert_in_file(char *filename, char *name)
 {
-	FILE *f = fopen(filename, "a");
+	clock_t start, end;
+
+	FILE *f = fopen(filename, "r+");
 	if (!f)
 	{
 		printf("\nОшибка. Невозможно открыть файл %s.\n", filename);
 		return ERROR_FILE;
 	}
+	char str[255];
+	int count = 0;
+	int flag = 1;
 
+	while (fgets(str, 255, f))
+	{
+		str[strlen(str) - 1] = '\0';
+		if (!strcmp(str, name))
+		{
+			printf("\nДанное слово не может быть добавлено, так как уже есть в дереве.\n\n");
+			flag = 0;
+			break;
+		}
+		count++;
+	}
 	
+	if (flag)
+	{
+		start = clock();
+		fprintf(f, "%s\n", name);
+		end = clock();
 
+		printf("Время добавления в файл(в тактах): %ld\n", end - start);
+	}
+
+	printf("Количество сравнений для вставки в файл: %d\n\n", count);
+
+	fclose(f);
+	return EXIT_SUCCESS;
 }
+
 int insert_in_tree(tree_node_t **tree, tree_node_t **balance_tree, char *filename)
 {
     char str[255];
@@ -141,25 +176,31 @@ int insert_in_tree(tree_node_t **tree, tree_node_t **balance_tree, char *filenam
         
         if (!node)
             return ERROR_WITH_MEMORY;
+		
+		int i = 0;
 
 		start = clock();
-        *tree = insert(*tree, node);
+        *tree = insert(*tree, node, &i);
 		end = clock();
-
+		
         if (*balance_tree != NULL)
 		{
+			int i = 0;
 			start_balance = clock();
-			*balance_tree = insert_balance(*balance_tree, node_2);
+			*balance_tree = insert_balance(*balance_tree, node_2, &i);
 			end_balance = clock();
+			printf("\nВремя добавления в балансированное дерево(в тактах): %ld\n", end_balance - start_balance);
+			printf("Количество сравнений при добавлении в балансированное дерево: %d\n\n", i);	
 		}
 		else
 			printf("Слово добавлено только в исходное дерево, так как сбаласированное не создано.\n\n");
 
+		if (insert_in_file(filename, name))
+			return ERROR_FILE;		
 
-
-		printf("\nВремя добавления в исходное дерево(в тактах): %ld\n", end - start);	
-		printf("Время добавления в балансированное дерево(в тактах): %ld\n\n", end_balance - start_balance);
-
+		printf("Время добавления в исходное дерево(в тактах): %ld\n", end - start);
+		printf("Количество сравнений при добавлении в исходное дерево: %d\n\n", i);	
+		
     }
     else
     {

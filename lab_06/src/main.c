@@ -10,8 +10,10 @@ int main(void)
     print_info();
     tree_node_t *root = NULL;
     tree_node_t *root_balance = NULL;
+    hash_table_t *table = NULL;
 
     int key = 1, error_code = 0;
+    int max_size = 0, cur_size = 0;
     int flag_file = 1;
     char filename[20] = "";
     char filename_dot[] = "tree.gv";
@@ -36,7 +38,8 @@ int main(void)
             {
                 if (flag_file)
                 {
-                    read_filename(filename);
+                    if ((error_code = read_filename(filename, &max_size, &cur_size)))
+                        return error_code;
                     flag_file = 0;
                 }
 
@@ -74,8 +77,16 @@ int main(void)
                     break;
                 }
 
+                if (max_size <= cur_size)
+                {
+                    printf("\nНевозможно добавить элемент в структуры, так как они полностью заполнены.\n\n");
+                    break;
+                }
+
                 if ((error_code = insert_in_tree(&root, &root_balance, filename)))
                     return error_code;
+                
+                cur_size++;
 
                 break;
             }
@@ -112,11 +123,31 @@ int main(void)
             {
                 if (flag_file)
                 {
-                    read_filename(filename);
+                    if ((error_code = read_filename(filename, &max_size, &cur_size)))
+                        return error_code;
                     flag_file = 0;
                 }
+                table = malloc(sizeof(hash_table_t));
+                table->array = malloc(max_size * sizeof(node_table_t));
+
+                if (!(table->array))
+                    return ERROR_WITH_MEMORY;
+                    
+                table->cur_size = cur_size;
+                table->max_size = max_size;
+
+                create_hash(filename, &table);
+                
                 break;
             } 
+            case(7):
+            {
+                if (table != NULL)
+                {
+                    print_hash(table, cur_size);
+                }
+                break;
+            }
             default:
                 return error_code;
         }
