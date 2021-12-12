@@ -1,5 +1,7 @@
 #include "print.h"
 #include "compare_structs.h"
+#include "tree_balance.h"
+#include "tree_func.h"
 
 int main(void)
 {
@@ -116,16 +118,15 @@ int main(void)
                     break;
                 }
                 
-                table = calloc(1,sizeof(hash_table_t));
+                table = calloc(1, sizeof(hash_table_t));
                 table->array = calloc(max_size , sizeof(node_table_t));
 
                 if (!(table->array))
                     return ERROR_WITH_MEMORY;
                     
-                table->cur_size = cur_size;
                 table->max_size = max_size;
 
-                create_hash(filename, &table);
+                create_hash(filename, &table, cur_size);
 
                 printf("\nХэш-таблица успешно создана.\n\n");
                 
@@ -134,10 +135,7 @@ int main(void)
             case(6):
             {
                 if (table != NULL)
-                {
-                    hash_table_t temp = *table;
-                    print_hash(temp, max_size);
-                }
+                    print_hash(*table, max_size);
                 else
                     printf("\nСчитайте хэш-таблицу из файла в пункте 5.\n\n");
                 break;
@@ -156,16 +154,17 @@ int main(void)
                     break;
                 }
 
-                if ((error_code = insert_in_tree(&root, &root_balance, filename, table)))
+                if ((error_code = insert_in_tree(&root, &root_balance, filename, table, &cur_size)))
                     return error_code;
-                
-                cur_size++;
 
                 break;
             }
             
             default:
+            {
+                printf("\nВведён неверный пункт меню.\n\n");
                 return error_code;
+            }
         }
     }
     

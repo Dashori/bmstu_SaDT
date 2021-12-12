@@ -64,28 +64,21 @@ int insert_in_file(char *filename, char *name)
 	}
 	char str[255];
 	int count = 0;
-	int flag = 1;
 
+    start = clock();
 	while (fgets(str, 255, f))
 	{
 		str[strlen(str) - 1] = '\0';
 		if (!strcmp(str, name))
-		{
-			printf("\nДанное слово не может быть добавлено, так как уже есть в дереве.\n\n");
-			flag = 0;
 			break;
-		}
 		count++;
 	}
-	
-	if (flag)
-	{
-		start = clock();
-		fprintf(f, "%s\n", name);
-		end = clock();
 
-		printf("Время добавления в файл(в тактах): %ld\n", end - start);
-	}
+	
+	fprintf(f, "%s\n", name);
+	end = clock();
+
+	printf("Время добавления в файл(в тактах): %ld\n", end - start);
 
 	printf("Количество сравнений для вставки в файл: %d\n\n", count);
 
@@ -93,7 +86,7 @@ int insert_in_file(char *filename, char *name)
 	return EXIT_SUCCESS;
 }
 
-int insert_in_tree(tree_node_t **tree, tree_node_t **balance_tree, char *filename, hash_table_t *table)
+int insert_in_tree(tree_node_t **tree, tree_node_t **balance_tree, char *filename, hash_table_t *table, int *cur_size)
 {
     printf("\nВведите слово для вставки: ");
 	clock_t start, end;
@@ -112,6 +105,8 @@ int insert_in_tree(tree_node_t **tree, tree_node_t **balance_tree, char *filenam
         if (!node)
             return ERROR_WITH_MEMORY;
 
+        flag_cmp = 0;
+
 		int i = 0;
 		start = clock();
         *tree = insert(*tree, node, &i);
@@ -123,15 +118,14 @@ int insert_in_tree(tree_node_t **tree, tree_node_t **balance_tree, char *filenam
             return EXIT_SUCCESS;
         }
 
-        if (*balance_tree != NULL)
-		{
+        {
 			int i = 0;
 			start_balance = clock();
 			*balance_tree = insert_balance(*balance_tree, node_2, &i);
 			end_balance = clock();
 			printf("\nВремя добавления в балансированное дерево(в тактах): %ld\n", end_balance - start_balance);
 			printf("Количество сравнений при добавлении в балансированное дерево: %d\n\n", i);	
-		}
+        }
 
 		if (insert_in_file(filename, name))
 			return ERROR_FILE;		
@@ -147,6 +141,8 @@ int insert_in_tree(tree_node_t **tree, tree_node_t **balance_tree, char *filenam
             printf("Время добавления в хэш-таблицу(в тактах): %ld\n", end - start);
             printf("Количество сравнений при добавлении в хэш-таблицу: %d\n\n", compare);	
         }
+
+        (*cur_size)++;
     }
     else
     {

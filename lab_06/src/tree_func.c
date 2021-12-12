@@ -35,7 +35,6 @@ int read_tree(char *filename, tree_node_t **root)
 
     char str[255];
     int flag = 1;
-    
 
     while (fgets(str, 255, f))
     {

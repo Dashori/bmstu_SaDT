@@ -11,10 +11,9 @@ struct tree_node
 {
     const char *name;
     unsigned char height; 
-    // меньшие
-    struct tree_node *left;
-    // большие
-    struct tree_node *right;
+    
+    struct tree_node *left; // меньшие
+    struct tree_node *right;// большие
 };
 
 typedef void (*ptr_action_t) (tree_node_t*, void*);

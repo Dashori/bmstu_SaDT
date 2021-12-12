@@ -75,17 +75,8 @@ node_table_t *list_add_end(node_table_t *node, node_table_t *list, int *compare)
 
     node_table_t *temp = list;
 
-    for (temp = list; temp->next != NULL; temp = temp->next, (*compare)++)
-    {
-        (*compare)++;
-        int cmp = strcmp(node->name, temp->name);
-        if (cmp == 0)
-        {
-            printf("\nДанное слово уже есть в хэш-таблице и не может быть добавлено.\n\n");
-            return list;
-        }
-        printf("AAA %d %d", (*compare), cmp);
-    }
+    for ( ; temp->next != NULL; temp = temp->next, (*compare)++);
+
     temp->next = node;
 
     return list;
@@ -104,17 +95,19 @@ int hash_func(char *name, int max_size)
 void insert_hash_node(char *name, hash_table_t *table, int *compare)
 {
     int res = hash_func(name, table->max_size);
+    // printf("res = %d\n", res);
 
     if (table->array[res].name == NULL)
         table->array[res].name = name;
     else
     {
+        (*compare)++;
         node_table_t *new_node = create_node_table(name);
         table->array[res].next = list_add_end(new_node, table->array[res].next, compare);
     }
 }
 
-int create_hash(char *filename, hash_table_t **table)
+int create_hash(char *filename, hash_table_t **table, int cur_size)
 {
     FILE *f;
     if (!(f = fopen(filename, "r")))
@@ -130,9 +123,12 @@ int create_hash(char *filename, hash_table_t **table)
     { 
         str[strlen(str) - 1] = '\0';
         char *name = strdup(str);
+
         insert_hash_node(name, *table, &compare);
+
         count++;
     }
+
     fclose(f);
 
     if (!count)
@@ -141,19 +137,21 @@ int create_hash(char *filename, hash_table_t **table)
         return ERROR_EMPTY_FILE;
     }
 
-    if (count != (*table)->cur_size)
-        printf("ОШибка! %d %d", count, (*table)->cur_size);
+    if (count != cur_size)
+    {
+        printf("Ошибка. Не все слова были записаны.");
+        return EXIT_FAILURE;
+    }
 
     return EXIT_SUCCESS;
 }
 
-void print_list(node_table_t head)
+void print_list(node_table_t *head)
 {
-    node_table_t temp = head;
-    while (temp.next)
+    while (head)
     {
-        printf("%s ", temp.next->name);
-        temp.next = temp.next->next;
+        printf("%s ", head->name);
+        head = head->next;
     }
 }
 
@@ -163,10 +161,11 @@ void print_hash(hash_table_t table, int max_size)
     for (int i = 0; i < max_size; i++)
     {
         printf("%d: ", i);
+
         if (table.array[i].name != NULL)
             printf("%s ", table.array[i].name);
         if (table.array[i].next != NULL)
-            print_list(table.array[i]);
+            print_list(table.array[i].next);
         printf("\n");
     }
     printf("\n");
