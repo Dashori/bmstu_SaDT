@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "exceptions.h"
 
@@ -16,9 +17,11 @@ struct graph_struct
 };
 
 int create_matrix(graph_struct_t *graph);
+int read_random_matrix(graph_struct_t *graph);
 void print_matrix(graph_struct_t graph);
 void free_matrix(int *matrix);
 void show_graph(graph_struct_t *graph);
 void is_connected_graph(graph_struct_t *graph);
+
 
 #endif

@@ -1,5 +1,6 @@
 #include "print.h"
 #include "graph_func.h"
+#include "queue_func.h"
 #include "exceptions.h"
 
 int main(void)
@@ -9,15 +10,12 @@ int main(void)
 
     int key = 1, error_code = 0;
     int flag_graph = 1;
-    // int error_code = 0;
     graph_struct_t graph;
-    // char filename[20] = "";
-
-
+    queue_struct_t queue;
     while (key)
     {
         print_menu();
-        if (scanf("%d", &key) != 1 || key < 0 || key > 4)
+        if (scanf("%d", &key) != 1 || key < 0 || key > 5)
         {
             printf("Введён неверный пункт меню.\n");
             return ERROR_KEY;
@@ -42,6 +40,18 @@ int main(void)
             }
             case(2):
             {
+                error_code = read_random_matrix(&graph);
+                if (error_code)
+                    return error_code;
+                
+                flag_graph = 0;
+
+                printf("\nМатрица смежностей успешно считана.\n\n");
+                break;
+
+            }
+            case(3):
+            {
                 if (flag_graph)
                 {
                     printf("\nДля вывода матрицы смежности необходимо считать её в пункте 1.\n\n");
@@ -50,7 +60,7 @@ int main(void)
                 print_matrix(graph);
                 break;
             }
-            case(3):
+            case(4):
             {
                 if (flag_graph)
                 {
@@ -64,14 +74,15 @@ int main(void)
                 system("xdg-open graph.png");
                 break;
             }
-            case(4):
+            case(5):
             {
                 if (flag_graph)
                 {
                     printf("\nДля работы с графом необходимо считать его в пункте 1.\n\n");
                     break;
                 }
-                is_connected_graph(&graph);
+                // is_connected_graph(&graph);
+                create_queue(&queue);
 
                 break;
             }

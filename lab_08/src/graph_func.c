@@ -61,6 +61,71 @@ int create_matrix(graph_struct_t *graph)
     return EXIT_SUCCESS;
 }
 
+void reverse(char s[])
+{
+    for (int i = 0, j = strlen(s) - 1; i < j; i++, j--) {
+        char c = s[i];
+        s[i] = s[j];
+        s[j] = c;
+    }
+}
+
+void itoa(int n, char s[])
+{
+    int i = 0;
+
+    do {
+        s[i++] = n % 10 + '0';   
+    } while ((n /= 10) > 0);     
+
+    s[i] = '\0';
+    reverse(s);
+}
+
+int read_file(char *filename, graph_struct_t *graph)
+{
+    FILE *f = fopen(filename, "r");
+    if (f == NULL)
+        return ERROR_FILE;
+
+    for (int i = 0; i < graph->size; i++)
+        for (int j = 0; j < graph->size; j++)
+            if (fscanf(f, "%d", &(graph->matrix[i][j])) != 1)
+                return ERROR_ELEMENT;
+
+    return EXIT_SUCCESS;
+}
+
+
+int read_random_matrix(graph_struct_t *graph)
+{
+    printf("Введите количество вершин в графе: ");
+    if (scanf("%d", &(graph->size)) != 1 || graph->size < 2)
+    {
+        printf("\nНеверно введено количество вершин в графе.\n\n");
+        return ERROR_SIZE;
+    }
+    graph->matrix = allocate_matrix(graph->size, graph->size);
+
+    char graph_size[10];
+    itoa(graph->size, graph_size);
+    
+    char py_sys[] = "python3 data.py ";
+    char *temp = strcat(py_sys, graph_size);
+    system(temp);
+
+    char name[] = "data_";
+    temp = strcat(name, graph_size);
+    
+    char filename[] = "";
+
+    strcat(temp, ".txt");
+    strcpy(filename, temp);
+
+
+    return read_file(filename, graph);
+}
+
 void show_graph(graph_struct_t *graph)
 {
     FILE *f = fopen("graph.gv", "w");
@@ -89,12 +154,17 @@ void show_graph(graph_struct_t *graph)
 void is_connected_graph(graph_struct_t *graph)
 {
     int flag = 0;
+    // int visited[graph->size] = 0;
+
 
     for (int i = 0; i < graph->size; i++)
+    {
         for (int j = 0; j < graph->size; j++)
-            if (graph->matrix[i][j] == 0)
+        {
+            if (graph->matrix[i][j] == 0 && i != j)
                 flag = 1;
-            
+        }
+    }
 
     if (!flag)
         printf("Точно связный...");
@@ -120,11 +190,11 @@ void is_connected_graph(graph_struct_t *graph)
 //        }
 // }
 
-/ Функция для выполнения BFS на графике
+// / Функция для выполнения BFS на графике
 
 
-void BFS(graph_struct_t *graph)
-{
+// void BFS(graph_struct_t *graph)
+// {
 
     // Посетил вектор так, чтобы
 
@@ -134,34 +204,31 @@ void BFS(graph_struct_t *graph)
 
     // вершина посещается в начале
 
-    int visited[graph->size] = 1;
-
-    
-
-    q.push_back(start);
+    // int visited[graph->size] = 1;
+    // q.push_back(start);
     // Установить источник как посещенный
 
-    visited[start] = true;
-    int vis;
+//     visited[start] = true;
+//     int vis;
 
-    while (!q.empty()) {
+//     while (!q.empty()) {
 
-        vis = q[0];
-        // Распечатать текущий узел
-        cout << vis << " ";
-        q.erase(q.begin());
-        // Для каждой смежной вершины к текущей вершине
-        for (int i = 0; i < v; i++) {
-            if (adj[vis][i] == 1 && (!visited[i])) {
-                // Вставляем соседний узел в очередь
-                q.push_back(i);
-                // Устанавливать
-                visited[i] = true;
+//         vis = q[0];
+//         // Распечатать текущий узел
+//         cout << vis << " ";
+//         q.erase(q.begin());
+//         // Для каждой смежной вершины к текущей вершине
+//         for (int i = 0; i < v; i++) {
+//             if (adj[vis][i] == 1 && (!visited[i])) {
+//                 // Вставляем соседний узел в очередь
+//                 q.push_back(i);
+//                 // Устанавливать
+//                 visited[i] = true;
 
-            }
+//             }
 
-        }
+//         }
 
-    }
+//     }
 
-}
+// }
