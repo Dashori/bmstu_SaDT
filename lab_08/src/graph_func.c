@@ -36,12 +36,15 @@ void print_matrix(graph_struct_t graph)
 int create_matrix(graph_struct_t *graph)
 {
     printf("Введите количество вершин в графе: ");
-    if (scanf("%d", &(graph->size)) != 1 || graph->size < 2)
+
+    if (scanf("%d", &(graph->size)) != 1 || graph->size < 1)
     {
         printf("\nНеверно введено количество вершин в графе.\n\n");
         return ERROR_SIZE;
     }
     graph->matrix = allocate_matrix(graph->size, graph->size);
+    graph->reverse_matrix = allocate_matrix(graph->size, graph->size);
+    int d;
 
     if (graph->matrix == NULL)
         return ERROR_WITH_MEMORY;
@@ -51,11 +54,13 @@ int create_matrix(graph_struct_t *graph)
         printf("Введите строчку %d матрицы смежности: ", i + 1);
         for (int j = 0; j < graph->size; j++)
         {
-            if (scanf("%d", &(graph->matrix)[i][j]) != 1 || (graph->matrix)[i][j] < 0)
+            if (scanf("%d", &d) != 1 || d < 0)
             {
                 printf("Ввёден неверный элемент матрицы смежности.\n");
                 return ERROR_ELEMENT;
             }
+            (graph->matrix)[i][j] = d;
+            (graph->reverse_matrix)[j][i] = d;
         }
     }
     return EXIT_SUCCESS;
@@ -85,13 +90,21 @@ void itoa(int n, char s[])
 int read_file(char *filename, graph_struct_t *graph)
 {
     FILE *f = fopen(filename, "r");
+
     if (f == NULL)
         return ERROR_FILE;
+    
+    int d;
 
     for (int i = 0; i < graph->size; i++)
         for (int j = 0; j < graph->size; j++)
-            if (fscanf(f, "%d", &(graph->matrix[i][j])) != 1)
+        {
+            if (fscanf(f, "%d", &d) != 1)
                 return ERROR_ELEMENT;
+
+            (graph->matrix)[i][j] = d;
+            (graph->reverse_matrix)[j][i] = d;
+        }
 
     return EXIT_SUCCESS;
 }
@@ -100,12 +113,13 @@ int read_file(char *filename, graph_struct_t *graph)
 int read_random_matrix(graph_struct_t *graph)
 {
     printf("Введите количество вершин в графе: ");
-    if (scanf("%d", &(graph->size)) != 1 || graph->size < 2)
+    if (scanf("%d", &(graph->size)) != 1 || graph->size < 1)
     {
         printf("\nНеверно введено количество вершин в графе.\n\n");
         return ERROR_SIZE;
     }
     graph->matrix = allocate_matrix(graph->size, graph->size);
+    graph->reverse_matrix = allocate_matrix(graph->size, graph->size);
 
     char graph_size[10];
     itoa(graph->size, graph_size);
@@ -141,151 +155,71 @@ void show_graph(graph_struct_t *graph)
     fclose(f);
 }
 
-// int dfs(int u, int visited[])
-// {
-//     int visitedVertices = 1
-//     visited[u] = 1;                           // помечаем вершину как пройденную
-//     for v: uv ∈ E                               // проходим по смежным с u вершинам
-//         if not visited[v]                       // проверяем, не находились ли мы ранее в выбранной вершине
-//             visitedVertices += dfs(v, visited)
-//     return visitedVertices
-// }
-
-int dfs(graph_struct_t *graph)
+int dfs(graph_struct_t *graph, int **matrix)
 {
     int *visited = calloc(graph->size ,sizeof(int));
+
     if (!visited)
         return ERROR_WITH_MEMORY;
 
     queue_struct_t queue;
     queue.start = NULL;
-    
 
-    // for (int i = 0; i < graph->size; i++)
-    // 
     queue_node_t *temp = create_node(0);
     queue = *append_to_end(&queue, temp);
-    // }
-    print_queue(queue);
-
-    // int n = queue.start->data;
     int g =  queue.start->data;
     visited[g] = 1;
-    // int n = 2;
+
     while (queue.start)
     {    
-        printf(" g = %d \n", g);
-
         for (int i = 0; i < graph->size; i++)
         {
-            if (i != g && graph->matrix[g][i] && graph->matrix[i][g] && !visited[i])
+            if (i != g && matrix[g][i] && matrix[i][g] && !visited[i])
             {
-                printf(" f ");
+                visited[i] = 1;
+                queue_node_t *temp = create_node(i);
+                queue = *append_to_end(&queue, temp);
+
+            }
+            if (i != g && matrix[g][i] && !visited[i])
+            {
                 visited[i] = 1;
                 queue_node_t *temp = create_node(i);
                 queue = *append_to_end(&queue, temp);
             }
-        } 
+        }
         
         queue = *delete_from_start(&queue);
+
         if (queue.start)
-        {
             g = queue.start->data;
-            // printf("\n QUEUE ");
-            // print_queue(queue);
-            // printf("END \n");
-        }
-        // n--;
     }
 
     for (int i = 0; i < graph->size; i++)
         if (visited[i] == 0)
-            printf("%d  NOOOO \n", i);
+        {
+            free(visited);
+            return EXIT_FAILURE;
+        }
+
+    free(visited);
                     
     return EXIT_SUCCESS;
-
 }
 
-void is_connected_graph(graph_struct_t *graph)
+int is_connected_graph(graph_struct_t *graph)
 {
-    int flag = 0;
-    // int visited[graph->size] = 0;
-    for (int i = 0; i < graph->size; i++)
-    {
-        for (int j = 0; j < graph->size; j++)
+    int error_code = dfs(graph, graph->matrix);
+    if (error_code == ERROR_WITH_MEMORY)
+        return ERROR_WITH_MEMORY;
+
+    if (!error_code)
+        if (dfs(graph, graph->reverse_matrix) == 0)
         {
-            if (graph->matrix[i][j] == 0 && i != j)
-                flag = 1;
+            printf("\nГраф  является связным.\n\n");
+            return EXIT_SUCCESS;
         }
-    }
-
-    if (!flag)
-        printf("Точно связный...");
-
-    dfs(graph);
+    
+    printf("\nГраф не является связным.\n\n");
+    return EXIT_SUCCESS;
 }
-
-
-
-
-// queue <int> turn;//Это наша очередь, хранящая номера вершин
-// int used[1000];//массив, хранящий состояние вершины("сгорела","не сгорела")
-// int matrix[1000][1000];//матрица, хранящая информацию о смежности вершин
-// void bfs () //собственно сама функция
-// {
-//       while ( !turn.empty() ) //проверяем, пуста ли очередь
-//       {
-//             int ind=turn.front();//берем из очереди крайний элемент
-//             turn.pop();//удаляем его
-//             for ( int i=0; i<1000; i++ )//смотрим, с какими вершинами смежна вершина ind
-//             {
-//                   if ( matrix[ind][i]==1 )
-//                   {
-//                         turn.push(i);//добавляем в очередь вершину i
-//                   }
-//             }
-//        }
-// }
-
-// / Функция для выполнения BFS на графике
-
-
-// void BFS(graph_struct_t *graph)
-// {
-
-    // Посетил вектор так, чтобы
-
-    // вершина не посещена более одного раза
-
-    // Инициализируем вектор как false как нет
-
-    // вершина посещается в начале
-
-    // int visited[graph->size] = 1;
-    // q.push_back(start);
-    // Установить источник как посещенный
-
-//     visited[start] = true;
-//     int vis;
-
-//     while (!q.empty()) {
-
-//         vis = q[0];
-//         // Распечатать текущий узел
-//         cout << vis << " ";
-//         q.erase(q.begin());
-//         // Для каждой смежной вершины к текущей вершине
-//         for (int i = 0; i < v; i++) {
-//             if (adj[vis][i] == 1 && (!visited[i])) {
-//                 // Вставляем соседний узел в очередь
-//                 q.push_back(i);
-//                 // Устанавливать
-//                 visited[i] = true;
-
-//             }
-
-//         }
-
-//     }
-
-// }
