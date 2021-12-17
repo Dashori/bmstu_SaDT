@@ -151,12 +151,65 @@ void show_graph(graph_struct_t *graph)
 //     return visitedVertices
 // }
 
+int dfs(graph_struct_t *graph)
+{
+    int *visited = calloc(graph->size ,sizeof(int));
+    if (!visited)
+        return ERROR_WITH_MEMORY;
+
+    queue_struct_t queue;
+    queue.start = NULL;
+    
+
+    // for (int i = 0; i < graph->size; i++)
+    // 
+    queue_node_t *temp = create_node(0);
+    queue = *append_to_end(&queue, temp);
+    // }
+    print_queue(queue);
+
+    // int n = queue.start->data;
+    int g =  queue.start->data;
+    visited[g] = 1;
+    // int n = 2;
+    while (queue.start)
+    {    
+        printf(" g = %d \n", g);
+
+        for (int i = 0; i < graph->size; i++)
+        {
+            if (i != g && graph->matrix[g][i] && graph->matrix[i][g] && !visited[i])
+            {
+                printf(" f ");
+                visited[i] = 1;
+                queue_node_t *temp = create_node(i);
+                queue = *append_to_end(&queue, temp);
+            }
+        } 
+        
+        queue = *delete_from_start(&queue);
+        if (queue.start)
+        {
+            g = queue.start->data;
+            // printf("\n QUEUE ");
+            // print_queue(queue);
+            // printf("END \n");
+        }
+        // n--;
+    }
+
+    for (int i = 0; i < graph->size; i++)
+        if (visited[i] == 0)
+            printf("%d  NOOOO \n", i);
+                    
+    return EXIT_SUCCESS;
+
+}
+
 void is_connected_graph(graph_struct_t *graph)
 {
     int flag = 0;
     // int visited[graph->size] = 0;
-
-
     for (int i = 0; i < graph->size; i++)
     {
         for (int j = 0; j < graph->size; j++)
@@ -168,8 +221,12 @@ void is_connected_graph(graph_struct_t *graph)
 
     if (!flag)
         printf("Точно связный...");
-    
+
+    dfs(graph);
 }
+
+
+
 
 // queue <int> turn;//Это наша очередь, хранящая номера вершин
 // int used[1000];//массив, хранящий состояние вершины("сгорела","не сгорела")

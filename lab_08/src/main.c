@@ -11,7 +11,7 @@ int main(void)
     int key = 1, error_code = 0;
     int flag_graph = 1;
     graph_struct_t graph;
-    queue_struct_t queue;
+    // queue_struct_t queue;
     while (key)
     {
         print_menu();
@@ -81,8 +81,8 @@ int main(void)
                     printf("\nДля работы с графом необходимо считать его в пункте 1.\n\n");
                     break;
                 }
-                // is_connected_graph(&graph);
-                create_queue(&queue);
+                is_connected_graph(&graph);
+                // create_queue(&queue);
 
                 break;
             }

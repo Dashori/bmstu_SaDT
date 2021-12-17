@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "exceptions.h"
+#include "queue_func.h"
 
 typedef struct graph_struct graph_struct_t;
 

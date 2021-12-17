@@ -2,8 +2,9 @@
 
 queue_struct_t *append_to_end(queue_struct_t *queue, queue_node_t *node)
 {
-    if (!queue->end)
+    if (!queue->start)
     {
+        queue->start = node;
         queue->end = node;
         return queue;
     }
@@ -48,17 +49,13 @@ void print_queue(queue_struct_t queue)
 
 void create_queue(queue_struct_t *queue)
 {
-    for (int i = 0; i < 10; i++)
+    queue->end = queue->start;
+    for (int i = 0; i < 2; i++)
     {
         queue_node_t *temp = create_node(i);
-
-        if (i == 4)
-            queue = delete_from_start(queue);
         queue = append_to_end(queue, temp);
     }
     print_queue(*queue);
     queue = delete_from_start(queue);
-    printf("\n");
-    // queue->start = queue->start->next;
     print_queue(*queue);
 }
