@@ -1,0 +1,100 @@
+% !TeX document-id = {c68f4be8-c497-43e0-82df-e9ebfbea9577}
+% !TeX TXS-program:pdflatex = pdflatex -synctex=1 -interaction=nonstopmode --shell-escape %.tex
+% новая команда \RNumb для вывода римских цифр
+\documentclass[a4paper,12pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm} 
+\usepackage{caption}
+\usepackage{misccorr}
+\usepackage[noadjust]{cite}
+\usepackage{cmap} 
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english, russian]{babel}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{verbatim}
+\usepackage{makeidx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{courier}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{color}
+\lstset{basicstyle=\fontsize{10}{10}\selectfont,breaklines=true}
+
+\newcommand{\specchapter}[1]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}}
+\newcommand{\specsection}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}}
+\newcommand{\specsubsection}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
+\newcommand{\RNumb}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\newcommand{\jj}{\righthyphenmin=20 \justifying}
+
+
+% геометрия
+\geometry{pdftex, left = 2cm, right = 2cm, top = 2.5cm, bottom = 2.5cm}
+
+\setcounter{tocdepth}{4} % фикс переноса 
+\righthyphenmin = 2
+\tolerance = 2048
+
+\begin{document}
+	\thispagestyle{empty}
+	
+	\noindent \begin{minipage}{0.15\textwidth}
+		\includegraphics[width=\linewidth]{b_logo}
+	\end{minipage}
+	\noindent\begin{minipage}{0.9\textwidth}\centering
+		\textbf{Министерство науки и высшего образования Российской Федерации}\\
+		\textbf{Федеральное государственное бюджетное образовательное учреждение высшего образования}\\
+		\textbf{«Московский государственный технический университет имени Н.Э.~Баумана}\\
+		\textbf{(национальный исследовательский университет)»}\\
+		\textbf{(МГТУ им. Н.Э.~Баумана)}
+	\end{minipage}
+	
+	\noindent\rule{18cm}{3pt}
+	\newline\newline
+	\noindent ФАКУЛЬТЕТ \text{«Информатика и системы управления»} \newline\newline
+	\noindent КАФЕДРА \text{«Программное обеспечение ЭВМ и информационные технологии»}\newline\newline
+	\newline
+	
+	
+	\begin{center}
+		\noindent\begin{minipage}{1.0\textwidth}\centering
+			\large\textbf{ ОТЧЕТ ПО ЛАБОРАТОРНОЙ РАБОТЕ №1}\\
+			\large\textbf{ «ОБРАБОТКА БОЛЬШИХ ДАННЫХ»}\\
+			\large\textbf{  по курсу «Типы и структуры данных»}\\
+		\end{minipage}
+	\end{center}
+	""\newline\newline\newline\newline
+
+	\noindent Студент\text{~~~~~~~~~~~~~~~Чепиго Дарья Станиславовна~~~~~~~~~~~~~~~~~~~~~~~~}\newline
+	Группа{~~~~~~~~~~~~~~~~~ИУ7-44Б~~~~~~~~~~}\newline\newline\newline\newline\newline\newline\newline
+	
+	
+	\noindent\begin{tabular}{lcc}
+	Студент: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~& $\underline{\text{~~~~~~~~~~~~~~~~}}$ & $\underline{\text{~~Чепиго Д.С..~~}}$ \\
+	& \footnotesize подпись, дата  & \footnotesize Фамилия, И.О. \\
+	& &  \\
+	Преподаватель: & $\underline{\text{~~~~~~~~~~~~~~~~~}}$ & $\underline{\text{~~~~ Барышникова М.Ю.~~~}}$ \\
+		& \footnotesize подпись, дата & \footnotesize Фамилия, И. О. \\
+	\end{tabular}
+	
+	""\newline\newline\newline\newline\newline
+	
+	\noindent ~Оценка $\underline{\text{~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}}$
+	""\newline
+	
+	\begin{center}
+		\vfill
+		Москва -- 2021
+		~г.
+	\end{center}
+	\clearpage
+	
+\end{document}
