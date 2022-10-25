@@ -4,7 +4,8 @@ int *allocate_arr(int n_zero)
 {
     int *arr;
 
-    arr = malloc(n_zero * sizeof(int));
+    arr = calloc(n_zero, sizeof(int));
+
     if (arr == NULL)
         return NULL;
     
